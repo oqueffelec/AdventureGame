@@ -7,4 +7,5 @@ public class Monde extends java.lang.Object implements java.io.Serializable{
 	public void Monde(String nom){
 		this.nomDuMonde=nom;
 	}
+	pu
 }
