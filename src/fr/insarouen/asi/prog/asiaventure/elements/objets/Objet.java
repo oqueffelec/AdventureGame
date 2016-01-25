@@ -6,16 +6,15 @@ import fr.insarouen.asi.prog.asiaventure.elements.Entite;
 public class Objet extends Entite {
 
 	private String nomObjet;
-  // constructeur//
-
+  private boolean estDeplacable;
+  
   public Objet(String nomObjet, Monde monde) {
     super(nomObjet,monde);
     this.nomObjet=nomObjet;
+    this.estDeplacable=false;
   }
 
-  // methodes//
-
-  boolean estDeplacable() {
-    return(false);
+  public boolean estDeplacable(){
+      return this.estDeplacable;
   }
 }

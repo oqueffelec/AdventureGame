@@ -21,10 +21,15 @@ public class Entite extends java.lang.Object implements java.io.Serializable {
   public Monde getMonde() {
     return(this.monde);
   }
-    public java.lang.String toString() {
+  
+  public java.lang.String toString() {
     return(String.format("Nom de l'entité : %s",this.nomEntite));
   }
-// il faut redefinir le hashcode//
+
+  public int hashCode() { 
+    return this.nomEntite.hashCode()+this.monde.hashCode();
+  }
+
   public boolean equals(java.lang.Object o) {
     if (o==this)
       return true;

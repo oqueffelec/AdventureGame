@@ -2,15 +2,21 @@ package fr.insarouen.asi.prog.asiaventure;
 
 import fr.insarouen.asi.prog.asiaventure.elements.Entite;
 
+/** Class Description of Monde */
 public class Monde extends java.lang.Object implements java.io.Serializable{
 
 	private String nomDuMonde;
 	private Entite[] entites=new Entite[0];
 
+	/** Constructor Description of MyClass() */
 	public Monde(String nomDuMonde){
 		this.nomDuMonde=nomDuMonde;
 	}
 
+	/** Permet d'ajouter une entite au monde
+	 * 
+	 * @param entite			on ajouter une entite au monde
+	 */
 	public void ajouter(Entite entite){
 		Entite[] tmp=new Entite[this.entites.length+1];
 		for(int i=0;i<this.entites.length;i++){
@@ -36,10 +42,12 @@ public class Monde extends java.lang.Object implements java.io.Serializable{
 		StringBuilder desc=new StringBuilder();
 		desc.append("Monde ");
 		desc.append(this.getNom());
-		desc.append(" ");
 		for(int i=0;i<this.entites.length;i++){
-			desc.append("Entité ");
+			desc.append(" Entité ");
+			desc.append(i+1);
+			desc.append(" : ");
 			desc.append(this.entites[i].getNom());
+			desc.append("  ");
 		}
 		return desc.toString();
 	}
