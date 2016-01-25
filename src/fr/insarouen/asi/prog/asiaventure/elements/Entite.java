@@ -24,7 +24,7 @@ public class Entite extends java.lang.Object implements java.io.Serializable {
     public java.lang.String toString() {
     return(String.format("Nom de l'entité : %s",this.nomEntite));
   }
-
+// il faut redefinir le hashcode//
   public boolean equals(java.lang.Object o) {
     if (o==this)
       return true;
