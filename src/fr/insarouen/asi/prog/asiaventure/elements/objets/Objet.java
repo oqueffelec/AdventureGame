@@ -1,20 +1,21 @@
 package fr.insarouen.asi.prog.asiaventure.elements.objets;
 
 import fr.insarouen.asi.prog.asiaventure.Monde;
-import java.lang.Object;
 import fr.insarouen.asi.prog.asiaventure.elements.Entite;
 
 public class Objet extends Entite {
 
+	private String nomObjet;
   // constructeur//
 
-  public Objet(String nomObjet, String nomDuMonde) {
-    super(nom,monde);
+  public Objet(String nomObjet, Monde monde) {
+    super(nomObjet,monde);
+    this.nomObjet=nomObjet;
   }
 
   // methodes//
 
-  boolean est deplacable() {
+  boolean estDeplacable() {
     return(false);
   }
 }
