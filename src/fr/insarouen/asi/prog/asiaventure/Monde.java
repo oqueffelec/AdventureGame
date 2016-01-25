@@ -1,13 +1,13 @@
 package fr.insarouen.asi.prog.asiaventure;
 
-import fr.insarouen.asi.prog.asiaventure.Entite;
+import fr.insarouen.asi.prog.asiaventure.elements.Entite;
 
 public class Monde extends java.lang.Object implements java.io.Serializable{
 
 	private String nomDuMonde;
 	private Entite[] entites=new Entite[0];
 
-	public void Monde(String nomDuMonde){
+	public Monde(String nomDuMonde){
 		this.nomDuMonde=nomDuMonde;
 	}
 
@@ -27,5 +27,5 @@ public class Monde extends java.lang.Object implements java.io.Serializable{
 		}
 		return null;
 	}
-	pu
+
 }
