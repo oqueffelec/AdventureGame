@@ -9,5 +9,7 @@ public class Main{
 
 		Monde m=new Monde("hi");
 		Entite e=new Entite("E1",m);
+		m.ajouter(e);
+		System.out.println(m);
 	}
 }
