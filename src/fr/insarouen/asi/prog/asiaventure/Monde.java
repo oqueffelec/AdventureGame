@@ -1,6 +1,6 @@
 package fr.insarouen.asi.prog.asiaventure;
 
-public class Monde{
+public class Monde extends java.lang.Object implements java.io.Serializable{
 
 	private String nomDuMonde;
 
