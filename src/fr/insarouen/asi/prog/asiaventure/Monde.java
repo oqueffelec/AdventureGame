@@ -28,4 +28,19 @@ public class Monde extends java.lang.Object implements java.io.Serializable{
 		return null;
 	}
 
+	public String getNom(){
+		return this.nomDuMonde;
+	}
+
+	public String toString(){
+		StringBuilder desc=new StringBuilder();
+		desc.append("Monde ");
+		desc.append(this.getNom());
+		desc.append(" ");
+		for(int i=0;i<this.entites.length;i++){
+			desc.append("Entité ");
+			desc.append(this.entites[i].getNom());
+		}
+		return desc.toString();
+	}
 }
