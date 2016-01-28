@@ -2,17 +2,26 @@ package fr.insarouen.asi.prog.asiaventure.elements;
 
 import fr.insarouen.asi.prog.asiaventure.Monde;
 
+/** Classe Entite : chaque Entite possede un nom et appartient a un seul monde
+ *
+ * @author Queffelec Octave
+ * @author Le Lain Alexandre
+ * @version 1.0 , Janvier 2016.
+ */
 public class Entite extends java.lang.Object implements java.io.Serializable {
   private java.lang.String nomEntite;
   private Monde monde;
 
-  //Constructeur//
-
+ 
+  /** Constructeur de Entite
+  * @param nom     nom de l'entite
+  * @param monde     monde auquel appartient l'entite
+  */
   public Entite(java.lang.String nom, Monde monde) {
     this.nomEntite=nom;
     this.monde=monde;
   }
-  // Methodes//
+  
 
   public java.lang.String getNom() {
     return(this.nomEntite);
