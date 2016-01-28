@@ -12,7 +12,7 @@ public class Entite extends java.lang.Object implements java.io.Serializable {
   private java.lang.String nomEntite;
   private Monde monde;
 
- 
+
   /** Constructeur de Entite
   * @param nom     nom de l'entite
   * @param monde     monde auquel appartient l'entite
@@ -21,24 +21,44 @@ public class Entite extends java.lang.Object implements java.io.Serializable {
     this.nomEntite=nom;
     this.monde=monde;
   }
-  
 
+  /** Permet d'obtenir nom de l'entité
+   *
+   * @return			retourne nom de l'entité en caractères
+   */
   public java.lang.String getNom() {
     return(this.nomEntite);
   }
 
+  /** Permet d'obtenir le monde associé à cette entité
+	 *
+	 * @return			retourne le monde
+	 */
   public Monde getMonde() {
     return(this.monde);
   }
-  
+
+  /** Permet d'afficher le nom de l'entité
+   *
+   * @return			retourne l'entité en caractères
+   */
   public java.lang.String toString() {
     return(String.format("Nom de l'entité : %s",this.nomEntite));
   }
 
-  public int hashCode() { 
+  /** Permet d'obtenir le hashcode de l'entité en additionant celui du nom et du monde
+   *
+   * @return			retourne le hashcode
+   */
+  public int hashCode() {
     return this.nomEntite.hashCode()+this.monde.hashCode();
   }
 
+  /** Verifie l'égalité entre 2 objets
+   *
+   * @param o			objet
+   * @return			retourne boolean
+   */
   public boolean equals(java.lang.Object o) {
     if (o==this)
       return true;

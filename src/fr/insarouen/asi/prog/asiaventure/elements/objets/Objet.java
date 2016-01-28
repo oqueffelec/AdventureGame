@@ -13,12 +13,17 @@ public class Objet extends Entite {
 
 	private String nomObjet;
   private boolean estDeplacable;
-  
+
   public Objet(String nomObjet, Monde monde) {
     super(nomObjet,monde);
     this.nomObjet=nomObjet;
     this.estDeplacable=false;
   }
+
+	/** Indique si le déplacement de l'objet est autorisé
+	 *
+	 * @return			retourne boolean
+	 */
 
   public boolean estDeplacable(){
       return this.estDeplacable;
