@@ -31,7 +31,12 @@ public class Main{
 					return true;
 				}
 		};
-		System.out.println(o2);
+		Objet o3=new Objet("épée",m){
+				public boolean estDeplacable(){
+					return true;
+				}
+		};
+		System.out.println(o3);
 
 		//test element structurel
 		Entite elem=new ElementStructurel("hache",m){};
@@ -45,8 +50,11 @@ public class Main{
 		Piece piece=new Piece("Salle de torture",m);
 		piece.deposer(o1);
 		piece.deposer(o2);
+		piece.deposer(o3);
 		System.out.println(piece);
 		System.out.println(piece.contientObjet(o1));
 		System.out.println(piece.contientObjet("marteaus"));
+		piece.retirer(o1);
+		System.out.println(piece);
 	}
 }

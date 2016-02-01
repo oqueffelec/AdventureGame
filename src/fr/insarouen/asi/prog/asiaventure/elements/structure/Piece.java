@@ -2,46 +2,44 @@ package fr.insarouen.asi.prog.asiaventure.elements.structure;
 
 import fr.insarouen.asi.prog.asiaventure.Monde;
 import fr.insarouen.asi.prog.asiaventure.elements.objets.*;
+import fr.insarouen.asi.prog.asiaventure.lib.*;
 
 public class Piece extends ElementStructurel{
 
-  Objet[] listeObj;
+  ListeObjet listeObj;
 
   public Piece(String nom,Monde monde){
     super(nom,monde);
-    this.listeObj=new Objet[0];
+    this.listeObj=new ListeObjet();
+  }
+
+  public Objet retirer(Objet obj){
+    return this.listeObj.retirer(obj.getNom());
+  }
+
+  public Objet retirer(String nom){
+    return this.listeObj.retirer(nom);
   }
 
   public boolean contientObjet(Objet objet){
-    return contientObjet(objet.getNom());
+    return this.listeObj.contientObjet(objet.getNom());
   }
 
   public boolean contientObjet(String nom){
-    boolean contient=false;
-    int i=0;
-    while(i<this.listeObj.length && !contient){
-      if (this.listeObj[i].getNom().equals(nom))
-        contient=true;
-      i++;
-    }
-    return contient;
+    return this.listeObj.contientObjet(nom);
   }
 
   public void deposer(Objet obj){
-    Objet[] tmp=new Objet[this.listeObj.length+1];
-    for(int i=0;i<this.listeObj.length;i++)
-      tmp[i]=this.listeObj[i];
-    tmp[tmp.length-1]=obj;
-    this.listeObj=tmp;
+    this.listeObj.deposer(obj);
   }
 
   public String toString(){
     StringBuilder desc=new StringBuilder();
-    for(int i=0;i<this.listeObj.length;i++){
+    for(int i=0;i<this.listeObj.getTaille();i++){
       desc.append("Objet ");
-      desc.append(i);
+      desc.append(i+1);
       desc.append(" : ");
-      desc.append(this.listeObj[i].getNom());
+      desc.append(this.listeObj.getObjet(i).getNom());
       desc.append(" --- ");
     }
     return desc.toString();
