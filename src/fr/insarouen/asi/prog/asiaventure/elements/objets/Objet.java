@@ -9,15 +9,13 @@ import fr.insarouen.asi.prog.asiaventure.elements.Entite;
  * @author Le Lain Alexandre
  * @version 1.0 , Janvier 2016.
  */
-public class Objet extends Entite {
+public abstract class Objet extends Entite {
 
 	private String nomObjet;
-  private boolean estDeplacable;
 
   public Objet(String nomObjet, Monde monde) {
     super(nomObjet,monde);
     this.nomObjet=nomObjet;
-    this.estDeplacable=false;
   }
 
 	/** Indique si le déplacement de l'objet est autorisé
@@ -25,7 +23,5 @@ public class Objet extends Entite {
 	 * @return			retourne boolean
 	 */
 
-  public boolean estDeplacable(){
-      return this.estDeplacable;
-  }
+  public abstract boolean estDeplacable();
 }

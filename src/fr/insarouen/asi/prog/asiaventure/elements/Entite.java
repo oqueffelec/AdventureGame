@@ -8,7 +8,7 @@ import fr.insarouen.asi.prog.asiaventure.Monde;
  * @author Le Lain Alexandre
  * @version 1.0 , Janvier 2016.
  */
-public class Entite extends java.lang.Object implements java.io.Serializable {
+public abstract class Entite extends java.lang.Object implements java.io.Serializable {
   private java.lang.String nomEntite;
   private Monde monde;
 

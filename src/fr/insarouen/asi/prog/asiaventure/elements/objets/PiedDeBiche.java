@@ -8,12 +8,13 @@ import fr.insarouen.asi.prog.asiaventure.Monde;
  * @author Le Lain Alexandre
  * @version 1.0 , Janvier 2016.
  */
-public class PiedDeBiche extends Objet{
-
-	private boolean estDeplacable;
+public abstract class PiedDeBiche extends Objet{
 
 	public PiedDeBiche(String nom,Monde monde){
 		super(nom,monde);
-		this.estDeplacable=true;
+	}
+
+	public boolean estDeplacable(){
+		return true;
 	}
 }
