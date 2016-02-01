@@ -1,16 +1,23 @@
 package fr.insarouen.asi.prog.asiaventure.elements.structure;
 
 import fr.insarouen.asi.prog.asiaventure.Monde;
+import fr.insarouen.asi.prog.asiaventure.elements.vivant.*;
 import fr.insarouen.asi.prog.asiaventure.elements.objets.*;
 import fr.insarouen.asi.prog.asiaventure.lib.*;
 
 public class Piece extends ElementStructurel{
 
   ListeObjet listeObj;
+  ListeVivant listeViv;
 
   public Piece(String nom,Monde monde){
     super(nom,monde);
     this.listeObj=new ListeObjet();
+    this.listeViv=new ListeVivant();
+  }
+
+  public Objet[] getObjets(){
+      return this.listeObj.getObjets();
   }
 
   public Objet retirer(Objet obj){
@@ -27,6 +34,14 @@ public class Piece extends ElementStructurel{
 
   public boolean contientObjet(String nom){
     return this.listeObj.contientObjet(nom);
+  }
+
+  public boolean contientVivant(Vivant vivant){
+    return this.listeViv.contientVivant(vivant.getNom());
+  }
+
+  public boolean contientVivant(String nom){
+    return this.listeViv.contientVivant(nom);
   }
 
   public void deposer(Objet obj){

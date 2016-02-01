@@ -14,9 +14,14 @@ public class ListeObjet{
     return this.listeObj[i];
   }
 
+  public Objet[] getObjets(){
+    return this.listeObj;
+  }
+
   public int getTaille(){
     return this.listeObj.length;
   }
+
   public Objet retirer(Objet obj){
     return retirer(obj.getNom());
   }

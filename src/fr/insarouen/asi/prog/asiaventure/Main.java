@@ -2,6 +2,7 @@ package fr.insarouen.asi.prog.asiaventure;
 
 import fr.insarouen.asi.prog.asiaventure.*;
 import fr.insarouen.asi.prog.asiaventure.elements.*;
+import fr.insarouen.asi.prog.asiaventure.elements.vivant.*;
 import fr.insarouen.asi.prog.asiaventure.elements.objets.*;
 import fr.insarouen.asi.prog.asiaventure.elements.structure.*;
 
@@ -46,8 +47,12 @@ public class Main{
 		Objet p=new PiedDeBiche("p1",m){};
 		System.out.println(p);
 
-		//test Piece
 		Piece piece=new Piece("Salle de torture",m);
+
+		//test vivant
+		Vivant v1=new Vivant("Sir Lancelot",m,10,4,piece,o1){};
+
+		//test Piece
 		piece.deposer(o1);
 		piece.deposer(o2);
 		piece.deposer(o3);
