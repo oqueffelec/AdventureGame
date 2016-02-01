@@ -10,6 +10,13 @@ public class ListeObjet{
     this.listeObj=new Objet[0];
   }
 
+  public ListeObjet(Objet[] obj){
+    Objet[] tmp=new Objet[ob.length];
+    for(int i=0;i<obj.length;i++)
+      tmp[i]=obj[i];
+    this.listeObj=tmp;
+  }
+
   public Objet getObjet(int i){
     return this.listeObj[i];
   }

@@ -51,15 +51,15 @@ public class Main{
 
 		//test vivant
 		Vivant v1=new Vivant("Sir Lancelot",m,10,4,piece,o1){};
+		Vivant v2=new Vivant("Demogorgon",m,50,6,piece,o2){};
 
 		//test Piece
-		piece.deposer(o1);
-		piece.deposer(o2);
-		piece.deposer(o3);
+		piece.deposer(o1);piece.deposer(o2);piece.deposer(o3);
+		piece.entrer(v1);piece.entrer(v2);
 		System.out.println(piece);
 		System.out.println(piece.contientObjet(o1));
 		System.out.println(piece.contientObjet("marteaus"));
-		piece.retirer(o1);
+		piece.retirer(o1);piece.sortir(v1);
 		System.out.println(piece);
 	}
 }
