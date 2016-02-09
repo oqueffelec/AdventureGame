@@ -5,6 +5,7 @@ import fr.insarouen.asi.prog.asiaventure.elements.*;
 import fr.insarouen.asi.prog.asiaventure.elements.vivant.*;
 import fr.insarouen.asi.prog.asiaventure.elements.objets.*;
 import fr.insarouen.asi.prog.asiaventure.elements.structure.*;
+import fr.insarouen.asi.prog.asiaventure.lib.ListeObjet;
 
 public class Main{
 
@@ -50,8 +51,11 @@ public class Main{
 		Piece piece=new Piece("Salle de torture",m);
 
 		//test vivant
-		Vivant v1=new Vivant("Sir Lancelot",m,10,4,piece,o1){};
-		Vivant v2=new Vivant("Demogorgon",m,50,6,piece,o2){};
+		Objet[] objets=new Objet[]{o1,o2,o3};
+		Vivant v1=new Vivant("Sir Lancelot",m,10,4,piece,objets){};
+		Vivant v2=new Vivant("Demogorgon",m,50,6,piece,objets){};
+		System.out.println(v1.estMort());
+		System.out.println(v1.toString());
 
 		//test Piece
 		piece.deposer(o1);piece.deposer(o2);piece.deposer(o3);
