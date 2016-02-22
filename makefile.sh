@@ -2,7 +2,7 @@ srcpath=./src/fr/insarouen/asi/prog/asiaventure
 sources=Main.java
 
 if [ "$1" = "doc" ]; then
-	Javadoc $srcpath/*.java $srcpath/elements/*.java $srcpath/elements/structure/*.java $srcpath/elements/objets/*.java -d doc
+	javadoc $srcpath/*.java $srcpath/elements/*.java $srcpath/elements/structure/*.java $srcpath/elements/objets/*.java -d doc
 else
 	if [ "$1" = "clean" ]; then 
 		rm -rf classes/*

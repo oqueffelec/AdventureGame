@@ -9,7 +9,7 @@ import fr.insarouen.asi.prog.asiaventure.Monde;
  * @author Le Lain Alexandre
  * @version 1.0 , Janvier 2016.
  */
-public class ElementStructurel extends Entite{
+public abstract class ElementStructurel extends Entite{
 
 
 	public ElementStructurel(String nom, Monde monde){

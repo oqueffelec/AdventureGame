@@ -65,4 +65,9 @@ public class ListeObjet{
     this.listeObj=tmp;
   }
 
+  public void copier(Objet[] obj){
+    for (int i=0;i<obj.length;i++){
+      this.listeObj[i]=obj[i];
+    }
+  }
 }
