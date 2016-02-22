@@ -6,6 +6,7 @@ import fr.insarouen.asi.prog.asiaventure.elements.vivants.*;
 import fr.insarouen.asi.prog.asiaventure.elements.objets.*;
 import fr.insarouen.asi.prog.asiaventure.elements.structure.*;
 import fr.insarouen.asi.prog.asiaventure.lib.ListeObjet;
+import fr.insarouen.asi.prog.asiaventure.*;
 
 public class Main{
 
@@ -15,19 +16,15 @@ public class Main{
 
 		//test entité
 		try{
-		Entite e=new Entite("Archer",m){};
-		Entite e2=new Entite("Berserker",m){};
-		m.ajouter(e);m.ajouter(e2);
-	}
-	catch(NomDEntiteDejaUtiliseDansLeMondeException e){
-
-	}
+			Entite e=new Entite("Archer",m){};
+			Entite e2=new Entite("Barbare",m){};
 		//System.out.println(e.equals(e)+" "+e.equals(e2));
 
 		//test Monde
 		//System.out.println(m);
 
 		//test objet
+
 		Objet o1=new Objet("marteau",m){
 				public boolean estDeplacable(){
 					return true;
@@ -43,6 +40,7 @@ public class Main{
 					return true;
 				}
 		};
+
 		//System.out.println(o3);
 
 		//test element structurel
@@ -73,5 +71,12 @@ public class Main{
 		System.out.println(piece.contientObjet("marteau"));
 		piece.retirer(o1);piece.sortir(v1);
 		System.out.println(piece);
+	}
+	catch(NomDEntiteDejaUtiliseDansLeMondeException e){
+		System.err.println("Ne dois jamais arriver");
+		System.err.println(e.getMessage());
+		e.printStackTrace();
+		System.exit(-1);
+	}
 	}
 }

@@ -2,6 +2,7 @@ package fr.insarouen.asi.prog.asiaventure.elements.structure;
 
 import fr.insarouen.asi.prog.asiaventure.elements.Entite;
 import fr.insarouen.asi.prog.asiaventure.Monde;
+import fr.insarouen.asi.prog.asiaventure.*;
 
 /** Classe ElementStucturel
  *
@@ -12,7 +13,7 @@ import fr.insarouen.asi.prog.asiaventure.Monde;
 public abstract class ElementStructurel extends Entite{
 
 
-	public ElementStructurel(String nom, Monde monde){
+	public ElementStructurel(String nom, Monde monde) throws NomDEntiteDejaUtiliseDansLeMondeException{
 		super(nom,monde);
 	}
 }

@@ -1,6 +1,7 @@
 package fr.insarouen.asi.prog.asiaventure.elements.objets;
 
 import fr.insarouen.asi.prog.asiaventure.Monde;
+import fr.insarouen.asi.prog.asiaventure.*;
 import fr.insarouen.asi.prog.asiaventure.elements.Entite;
 
 /** Classe Objet : un objet est caractérise par son nom , le monde auquel il appartient et s'il est deplaçable ou non
@@ -13,7 +14,7 @@ public abstract class Objet extends Entite {
 
 	private String nomObjet;
 
-  public Objet(String nomObjet, Monde monde) {
+  public Objet(String nomObjet, Monde monde) throws NomDEntiteDejaUtiliseDansLeMondeException{
     super(nomObjet,monde);
     this.nomObjet=nomObjet;
   }

@@ -22,13 +22,13 @@ public abstract class Entite extends java.lang.Object implements java.io.Seriali
     try{
       this.nomEntite=nom;
       this.monde=monde;
+      monde.ajouter(this);
     }
-    catch(NomDEntiteDejaUtiliseDansLeMondeException e){
+    catch(EntiteDejaDansUnAutreMondeException e){
       System.err.println("Ne dois jamais arriver");
       System.err.println(e.getMessage());
       e.printStackTrace();
       System.exit(-1);
-
     }
   }
 

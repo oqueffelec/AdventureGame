@@ -1,6 +1,7 @@
 package fr.insarouen.asi.prog.asiaventure.elements.objets;
 
 import fr.insarouen.asi.prog.asiaventure.Monde;
+import fr.insarouen.asi.prog.asiaventure.*;
 
 /** Classe PiedDeBiche
  *
@@ -10,7 +11,7 @@ import fr.insarouen.asi.prog.asiaventure.Monde;
  */
 public abstract class PiedDeBiche extends Objet{
 
-	public PiedDeBiche(String nom,Monde monde){
+	public PiedDeBiche(String nom,Monde monde) throws NomDEntiteDejaUtiliseDansLeMondeException {
 		super(nom,monde);
 	}
 

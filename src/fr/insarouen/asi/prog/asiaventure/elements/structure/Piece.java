@@ -4,13 +4,14 @@ import fr.insarouen.asi.prog.asiaventure.Monde;
 import fr.insarouen.asi.prog.asiaventure.elements.vivants.*;
 import fr.insarouen.asi.prog.asiaventure.elements.objets.*;
 import fr.insarouen.asi.prog.asiaventure.lib.*;
+import fr.insarouen.asi.prog.asiaventure.*;
 
 public class Piece extends ElementStructurel{
 
   ListeObjet listeObj;
   ListeVivant listeViv;
 
-  public Piece(String nom,Monde monde){
+  public Piece(String nom,Monde monde) throws NomDEntiteDejaUtiliseDansLeMondeException{
     super(nom,monde);
     this.listeObj=new ListeObjet();
     this.listeViv=new ListeVivant();
