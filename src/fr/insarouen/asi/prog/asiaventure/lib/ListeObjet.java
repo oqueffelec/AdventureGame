@@ -10,13 +10,26 @@ public class ListeObjet{
     this.listeObj=new Objet[0];
   }
 
+  public ListeObjet(Objet[] obj){
+    Objet[] tmp=new Objet[obj.length];
+    for(int i=0;i<obj.length;i++)
+      tmp[i]=obj[i];
+    this.listeObj=tmp;
+  }
+
+
   public Objet getObjet(int i){
     return this.listeObj[i];
+  }
+
+  public Objet[] getObjets(){
+    return this.listeObj;
   }
 
   public int getTaille(){
     return this.listeObj.length;
   }
+
   public Objet retirer(Objet obj){
     return retirer(obj.getNom());
   }
