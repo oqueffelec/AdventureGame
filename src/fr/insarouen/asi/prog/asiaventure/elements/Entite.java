@@ -1,6 +1,7 @@
 package fr.insarouen.asi.prog.asiaventure.elements;
 
 import fr.insarouen.asi.prog.asiaventure.Monde;
+import fr.insarouen.asi.prog.asiaventure.*;
 
 /** Classe Entite : chaque Entite possede un nom et appartient a un seul monde
  *
@@ -17,9 +18,18 @@ public abstract class Entite extends java.lang.Object implements java.io.Seriali
   * @param nom     nom de l'entite
   * @param monde     monde auquel appartient l'entite
   */
-  public Entite(java.lang.String nom, Monde monde) {
-    this.nomEntite=nom;
-    this.monde=monde;
+  public Entite(java.lang.String nom, Monde monde) throws NomDEntiteDejaUtiliseDansLeMondeException{
+    try{
+      this.nomEntite=nom;
+      this.monde=monde;
+    }
+    catch(NomDEntiteDejaUtiliseDansLeMondeException e){
+      System.err.println("Ne dois jamais arriver");
+      System.err.println(e.getMessage());
+      e.printStackTrace();
+      System.exit(-1);
+
+    }
   }
 
   /** Permet d'obtenir nom de l'entité

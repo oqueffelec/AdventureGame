@@ -14,12 +14,17 @@ public class Main{
 		Monde m=new Monde("Neverwinter");
 
 		//test entité
+		try{
 		Entite e=new Entite("Archer",m){};
 		Entite e2=new Entite("Berserker",m){};
+		m.ajouter(e);m.ajouter(e2);
+	}
+	catch(NomDEntiteDejaUtiliseDansLeMondeException e){
+
+	}
 		//System.out.println(e.equals(e)+" "+e.equals(e2));
 
 		//test Monde
-		m.ajouter(e);m.ajouter(e2);
 		//System.out.println(m);
 
 		//test objet
