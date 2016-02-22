@@ -7,11 +7,11 @@ public class PorteInexistanteDansLaPieceException extends PieceException{
   }
 
   public PorteInexistanteDansLaPieceException(String msg){
-
+    super(msg);
   }
 
-  public PorteInexistanteDansLaPieceException(String msg,Exception e){
-
+  public PorteInexistanteDansLaPieceException(String msg,Throwable e){
+    super(msg,e);
   }
 
 }

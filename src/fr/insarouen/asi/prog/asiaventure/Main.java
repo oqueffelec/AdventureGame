@@ -16,11 +16,11 @@ public class Main{
 		//test entité
 		Entite e=new Entite("Archer",m){};
 		Entite e2=new Entite("Berserker",m){};
-		System.out.println(e.equals(e)+" "+e.equals(e2));
+		//System.out.println(e.equals(e)+" "+e.equals(e2));
 
 		//test Monde
 		m.ajouter(e);m.ajouter(e2);
-		System.out.println(m);
+		//System.out.println(m);
 
 		//test objet
 		Objet o1=new Objet("marteau",m){
@@ -38,7 +38,7 @@ public class Main{
 					return true;
 				}
 		};
-		System.out.println(o3);
+		//System.out.println(o3);
 
 		//test element structurel
 		Entite elem=new ElementStructurel("hache",m){};
@@ -46,7 +46,7 @@ public class Main{
 
 		//test PiedDeBiche
 		Objet p=new PiedDeBiche("p1",m){};
-		System.out.println(p);
+		//System.out.println(p);
 
 		Piece piece=new Piece("Salle de torture",m);
 
@@ -55,12 +55,14 @@ public class Main{
 		Vivant v1=new Vivant("Sir Lancelot",m,10,4,piece,objets){};
 		Vivant v2=new Vivant("Demogorgon",m,50,6,piece,objets){};
 		Vivant v3=new Vivant("Drizzt",m,8,3,piece,objets){};
-		System.out.println(v1.estMort());
-		System.out.println(v1);
+		Vivant v4=new Vivant("Thorgal",m,18,8,piece,objets){};
+		//System.out.println(v4);
+		//System.out.println(v1.estMort());
+		//System.out.println(v1);
 
 		//test Piece
 		piece.deposer(o1);piece.deposer(o2);piece.deposer(o3);
-		piece.entrer(v1);piece.entrer(v2);
+		piece.entrer(v1);piece.entrer(v2);piece.entrer(v3);piece.entrer(v4);
 		System.out.println(piece);
 		System.out.println(piece.contientObjet(o1));
 		System.out.println(piece.contientObjet("marteau"));

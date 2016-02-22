@@ -21,10 +21,10 @@ public class Monde extends java.lang.Object implements java.io.Serializable{
 	}
 
 	/** Permet d'ajouter une entite au monde
-	 * 
+	 *
 	 * @param entite			on ajoute une entite au monde
 	 */
-	public void ajouter(Entite entite){
+	public void ajouter(Entite entite) throws EntiteDejaDansUnAutreMondeException,EntiteDejaDansUnAutreMondeException{
 		Entite[] tmp=new Entite[this.entites.length+1];
 		for(int i=0;i<this.entites.length;i++){
 			tmp[i]=this.entites[i];
@@ -34,7 +34,7 @@ public class Monde extends java.lang.Object implements java.io.Serializable{
 	}
 
 	/** Permet d'obtenir une entite du monde a partir du nom de celle ci
-	 * 
+	 *
 	 * @param nomEntite			le nom de l'entite
 	 * @return			retourne l'entite
 	 */

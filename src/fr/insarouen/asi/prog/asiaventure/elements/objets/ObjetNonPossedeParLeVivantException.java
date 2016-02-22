@@ -7,11 +7,11 @@ public class ObjetNonPossedeParLeVivantException extends VivantException{
   }
 
   public ObjetNonPossedeParLeVivantException(String msg){
-
+    super(msg);
   }
 
-  public ObjetNonPossedeParLeVivantException(String msg,Exception e){
-
+  public ObjetNonPossedeParLeVivantException(String msg,Throwable e){
+    super(msg,e);
   }
 
 }

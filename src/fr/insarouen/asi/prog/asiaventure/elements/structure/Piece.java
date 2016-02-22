@@ -62,7 +62,9 @@ public class Piece extends ElementStructurel{
 
   public String toString(){
     StringBuilder desc=new StringBuilder();
-    desc.append("Piece -- liste des objets : ");
+    desc.append("Piece ");
+    desc.append(super.toString());
+    desc.append(" -- liste des objets : ");
     for(int i=0;i<this.listeObj.getTaille();i++){
       desc.append("Objet ");
       desc.append(i+1);

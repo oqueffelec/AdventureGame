@@ -7,10 +7,10 @@ public class VivantAbsentDeLaPieceException extends PieceException{
   }
 
   public VivantAbsentDeLaPieceException(String msg){
-
+    super(msg);
   }
 
-  public VivantAbsentDeLaPieceException(String msg,Exception e){
-
+  public VivantAbsentDeLaPieceException(String msg,Throwable e){
+    super(msg,e);
   }
 }

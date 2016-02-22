@@ -1,4 +1,4 @@
-package fr.insarouen.asi.prog.asiaventure
+package fr.insarouen.asi.prog.asiaventure;
 
 public class ASIAventureException extends java.lang.Exception {
   public ASIAventureException(){
