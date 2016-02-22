@@ -2,7 +2,7 @@ package fr.insarouen.asi.prog.asiaventure;
 
 import fr.insarouen.asi.prog.asiaventure.*;
 import fr.insarouen.asi.prog.asiaventure.elements.*;
-import fr.insarouen.asi.prog.asiaventure.elements.vivant.*;
+import fr.insarouen.asi.prog.asiaventure.elements.vivants.*;
 import fr.insarouen.asi.prog.asiaventure.elements.objets.*;
 import fr.insarouen.asi.prog.asiaventure.elements.structure.*;
 import fr.insarouen.asi.prog.asiaventure.lib.ListeObjet;
@@ -54,15 +54,16 @@ public class Main{
 		Objet[] objets=new Objet[]{o1,o2,o3};
 		Vivant v1=new Vivant("Sir Lancelot",m,10,4,piece,objets){};
 		Vivant v2=new Vivant("Demogorgon",m,50,6,piece,objets){};
+		Vivant v3=new Vivant("Drizzt",m,8,3,piece,objets){};
 		System.out.println(v1.estMort());
-		System.out.println(v1.toString());
+		System.out.println(v1);
 
 		//test Piece
 		piece.deposer(o1);piece.deposer(o2);piece.deposer(o3);
 		piece.entrer(v1);piece.entrer(v2);
 		System.out.println(piece);
 		System.out.println(piece.contientObjet(o1));
-		System.out.println(piece.contientObjet("marteaus"));
+		System.out.println(piece.contientObjet("marteau"));
 		piece.retirer(o1);piece.sortir(v1);
 		System.out.println(piece);
 	}

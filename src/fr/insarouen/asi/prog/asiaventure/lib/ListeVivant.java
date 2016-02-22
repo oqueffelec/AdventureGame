@@ -1,6 +1,6 @@
 package fr.insarouen.asi.prog.asiaventure.lib;
 
-import fr.insarouen.asi.prog.asiaventure.elements.vivant.*;
+import fr.insarouen.asi.prog.asiaventure.elements.vivants.*;
 
 public class ListeVivant{
 

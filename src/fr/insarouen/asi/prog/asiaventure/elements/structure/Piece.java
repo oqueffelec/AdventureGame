@@ -1,7 +1,7 @@
 package fr.insarouen.asi.prog.asiaventure.elements.structure;
 
 import fr.insarouen.asi.prog.asiaventure.Monde;
-import fr.insarouen.asi.prog.asiaventure.elements.vivant.*;
+import fr.insarouen.asi.prog.asiaventure.elements.vivants.*;
 import fr.insarouen.asi.prog.asiaventure.elements.objets.*;
 import fr.insarouen.asi.prog.asiaventure.lib.*;
 
