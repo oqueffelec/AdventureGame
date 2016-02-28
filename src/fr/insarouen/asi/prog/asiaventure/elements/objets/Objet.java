@@ -19,6 +19,7 @@ public abstract class Objet extends Entite {
     this.nomObjet=nomObjet;
   }
 
+
 	/** Indique si le déplacement de l'objet est autorisé
 	 *
 	 * @return			retourne boolean

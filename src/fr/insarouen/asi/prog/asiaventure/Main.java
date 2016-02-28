@@ -14,66 +14,74 @@ public class Main{
 
 		Monde m=new Monde("Neverwinter");
 
-		//test entité
 		try{
+			//test entité
 			Entite e=new Entite("Archer",m){};
-			Entite e2=new Entite("Barbare",m){};
-		//System.out.println(e.equals(e)+" "+e.equals(e2));
+			Entite e2=new Entite("Berserker",m){};
+	  	//System.out.println(e.equals(e)+" "+e.equals(e2));
 
-		//test Monde
-		//System.out.println(m);
+			//test Monde
+			System.out.println(m);
 
-		//test objet
+			//test objet
 
-		Objet o1=new Objet("marteau",m){
-				public boolean estDeplacable(){
-					return true;
-				}
-		};
-		Objet o2=new Objet("carquois",m){
-				public boolean estDeplacable(){
-					return true;
-				}
-		};
-		Objet o3=new Objet("épée",m){
-				public boolean estDeplacable(){
-					return true;
-				}
-		};
+			Objet o1=new Objet("marteau",m){
+					public boolean estDeplacable(){
+						return true;
+					}
+			};
+			Objet o2=new Objet("carquois",m){
+					public boolean estDeplacable(){
+						return true;
+					}
+			};
+			Objet o3=new Objet("épée",m){
+					public boolean estDeplacable(){
+						return true;
+					}
+			};
 
-		//System.out.println(o3);
+			//System.out.println(o3);
 
-		//test element structurel
-		Entite elem=new ElementStructurel("hache",m){};
-		System.out.println(elem);
+			//test element structurel
+			Entite elem=new ElementStructurel("hache",m){};
+			//System.out.println(elem);
 
-		//test PiedDeBiche
-		Objet p=new PiedDeBiche("p1",m){};
-		//System.out.println(p);
+			//test PiedDeBiche
+			Objet p=new PiedDeBiche("p1",m){};
+			//System.out.println(p);
 
-		Piece piece=new Piece("Salle de torture",m);
+			Piece piece=new Piece("Salle de torture",m);
+			Piece piece2=new Piece("Salle de massages",m);
 
-		//test vivant
-		Objet[] objets=new Objet[]{o1,o2,o3};
-		Vivant v1=new Vivant("Sir Lancelot",m,10,4,piece,objets){};
-		Vivant v2=new Vivant("Demogorgon",m,50,6,piece,objets){};
-		Vivant v3=new Vivant("Drizzt",m,8,3,piece,objets){};
-		Vivant v4=new Vivant("Thorgal",m,18,8,piece,objets){};
-		//System.out.println(v4);
-		//System.out.println(v1.estMort());
-		//System.out.println(v1);
+			//test vivant
+			Objet[] objets=new Objet[]{o1,o2,o3};
+			Vivant v1=new Vivant("Sir Lancelot",m,10,4,piece,o1){};
+			Vivant v2=new Vivant("Demogorgon",m,50,6,piece,o2){};
+			Vivant v3=new Vivant("Drizzt",m,8,3,piece,o3){};
+			Vivant v4=new Vivant("Thorgal",m,18,8,piece2,objets){};
+			//System.out.println(piece);
+			//System.out.println(v1.estMort());
 
-		//test Piece
-		piece.deposer(o1);piece.deposer(o2);piece.deposer(o3);
-		piece.entrer(v1);piece.entrer(v2);piece.entrer(v3);piece.entrer(v4);
-		System.out.println(piece);
-		System.out.println(piece.contientObjet(o1));
-		System.out.println(piece.contientObjet("marteau"));
-		piece.retirer(o1);piece.sortir(v1);
-		System.out.println(piece);
+			//test Piece
+			//System.out.println(piece);
+		  //System.out.println(piece.contientObjet(o1));
+			//System.out.println(piece.contientObjet("marteau"));
+			piece.retirer(o1);piece.sortir(v2);v1.deposer(o1);
+			//System.out.println(v1);
+			//System.out.println(piece);
 	}
 	catch(NomDEntiteDejaUtiliseDansLeMondeException e){
-		System.err.println("Ne dois jamais arriver");
+		System.err.println(e.getMessage());
+		e.printStackTrace();
+		System.exit(-1);
+	}
+	catch(VivantAbsentDeLaPieceException e){
+		System.err.println(e.getMessage());
+		e.printStackTrace();
+		System.exit(-1);
+	}
+	catch(ObjetNonPossedeParLeVivantException e){
 		System.err.println(e.getMessage());
 		e.printStackTrace();
 		System.exit(-1);

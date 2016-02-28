@@ -21,23 +21,28 @@ public abstract class Vivant extends Entite {
 
   // Construteur
 
-  public Vivant(java.lang.String nom, Monde monde, int pointVie, int pointForce, Piece piece, Objet[] objets) throws NomDEntiteDejaUtiliseDansLeMondeException {
+  public Vivant(java.lang.String nom, Monde monde, int pointVie, int pointForce, Piece piece, Objet... objets) throws NomDEntiteDejaUtiliseDansLeMondeException {
     super(nom,monde);
     this.pointVie=pointVie;
     this.pointForce=pointForce;
     this.piece=piece;
     this.listeObjs=new ListeObjet(objets);
+    piece.entrer(this);
   }
 
 
   // Méthodes
 
-  public void deposer(java.lang.String nomObj){
+  public void deposer(java.lang.String nomObj) throws ObjetNonPossedeParLeVivantException{
+    if(!this.listeObjs.contientObjet(nomObj))
+      throw new ObjetNonPossedeParLeVivantException(nomObj+" n'est pas possede par le vivant");
     this.listeObjs.retirer(nomObj);
   }
 
 
-  public void deposer(Objet obj){
+  public void deposer(Objet obj) throws ObjetNonPossedeParLeVivantException{
+    if(!this.listeObjs.contientObjet(obj))
+      throw new ObjetNonPossedeParLeVivantException(obj.getNom()+" n'est pas possede par le vivant");
     this.listeObjs.retirer(obj);
   }
 
@@ -83,23 +88,11 @@ public abstract class Vivant extends Entite {
   }
 
   public void prendre(Objet obj){
-    if (this.piece.contientObjet(obj) && obj.estDeplacable()){
-      ListeObjet tmp=new ListeObjet();
-      for(int i=0;i<=this.listeObjs.getTaille();i++){
-        tmp.deposer(this.listeObjs.getObjet(i));
-      }
-      tmp.deposer(obj);
-    }
+    this.listeObjs.deposer(obj);
   }
 
   public void prendre(java.lang.String nomObj){
-    if (this.listeObjs.contientObjet(nomObj) && getObjet(nomObj).estDeplacable()){
-      ListeObjet tmp=new ListeObjet();
-      for(int i=0;i<=this.listeObjs.getTaille();i++){
-        tmp.deposer(this.listeObjs.getObjet(i));
-      }
-      tmp.deposer(getObjet(nomObj));
-    }
+    this.listeObjs.deposer(this.getObjet(nomObj));
   }
 
   public java.lang.String toString(){
@@ -107,18 +100,17 @@ public abstract class Vivant extends Entite {
     desc.append("---Vivant---").append("\n");
     desc.append(getNom()).append("\n");
     desc.append("Nom du monde ");
-    desc.append(getMonde()).append("\n");
+    desc.append(getMonde().getNom()).append("\n");
     desc.append("Points de vie ");
     desc.append(getPointVie()).append("\n");
     desc.append("Points de force ");
     desc.append(getPointForce()).append("\n");
-    desc.append("Piece");
     desc.append(getPiece()).append("\n");
     desc.append("Liste des Objets").append("\n");
     for (int i=0;i<this.listeObjs.getTaille();i++){
-      desc.append("Objet");
-      desc.append(i+1);
-      desc.append(this.listeObjs.getObjet(i));
+      desc.append("Objet ");
+      desc.append(i+1).append(" ");
+      desc.append(this.listeObjs.getObjet(i)).append(" -- ");
     }
     return desc.toString();
   }

@@ -5,6 +5,7 @@ import fr.insarouen.asi.prog.asiaventure.elements.vivants.*;
 import fr.insarouen.asi.prog.asiaventure.elements.objets.*;
 import fr.insarouen.asi.prog.asiaventure.lib.*;
 import fr.insarouen.asi.prog.asiaventure.*;
+import fr.insarouen.asi.prog.asiaventure.elements.vivants.*;
 
 public class Piece extends ElementStructurel{
 
@@ -29,7 +30,9 @@ public class Piece extends ElementStructurel{
     return this.listeObj.retirer(nom);
   }
 
-  public Vivant sortir(Vivant vivant){
+  public Vivant sortir(Vivant vivant) throws VivantAbsentDeLaPieceException{
+    if(!this.contientVivant(vivant))
+      throw new VivantAbsentDeLaPieceException(vivant.getNom()+" n'est pas dans la piece");
     return this.listeViv.retirer(vivant.getNom());
   }
 
@@ -55,6 +58,11 @@ public class Piece extends ElementStructurel{
 
   public void deposer(Objet obj){
     this.listeObj.deposer(obj);
+  }
+
+  public void deposer(Objet[] objets){
+    for(int i=0;i<objets.length;i++)
+      this.listeObj.deposer(objets[i]);
   }
 
   public void entrer(Vivant vivant){

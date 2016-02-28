@@ -26,9 +26,10 @@ public class Monde extends java.lang.Object implements java.io.Serializable{
 	 */
 	public void ajouter(Entite entite) throws NomDEntiteDejaUtiliseDansLeMondeException,EntiteDejaDansUnAutreMondeException{
 		if(!(entite.getMonde()==this))
-			throw new EntiteDejaDansUnAutreMondeException("Existe déja dans un autre monde");
+			throw new EntiteDejaDansUnAutreMondeException(entite.getNom()+" Existe déja dans un autre monde");
 		if(!(this.getEntite(entite.getNom())==null))
-			throw new NomDEntiteDejaUtiliseDansLeMondeException("Existe déja dans ce monde");
+			throw new NomDEntiteDejaUtiliseDansLeMondeException(entite.getNom() + " Existe déja dans ce monde");
+
 		Entite[] tmp=new Entite[this.entites.length+1];
 		for(int i=0;i<this.entites.length;i++){
 			tmp[i]=this.entites[i];
