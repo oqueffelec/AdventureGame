@@ -87,11 +87,15 @@ public abstract class Vivant extends Entite {
     return this.listeObjs.contientObjet(obj);
   }
 
-  public void prendre(Objet obj){
+  public void prendre(Objet obj) throws ObjetAbsentDeLaPieceException, ObjetNonDeplacableException{
+    if(!this.piece.contientObjet(obj))
+      throw new ObjetAbsentDeLaPieceException(obj.getNom()+" est absent de la pièce");
+    if (obj.estDeplacable())
+      throw new ObjetNonDeplacableException(obj.getNom()+"n'est pas déplacable");
     this.listeObjs.deposer(obj);
   }
 
-  public void prendre(java.lang.String nomObj){
+  public void prendre(java.lang.String nomObj) throws ObjetAbsentDeLaPieceException, ObjetNonDeplacableException{
     this.listeObjs.deposer(this.getObjet(nomObj));
   }
 
