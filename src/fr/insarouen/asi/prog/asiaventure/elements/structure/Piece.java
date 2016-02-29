@@ -22,12 +22,20 @@ public class Piece extends ElementStructurel{
       return this.listeObj.getObjets();
   }
 
-  public Objet retirer(Objet obj){
+  public Objet retirer(Objet obj) throws ObjetAbsentDeLaPieceException, ObjetNonDeplacableException{
+    if(!this.listeObj.contientObjet(obj))
+      throw new ObjetAbsentDeLaPieceException(obj.getNom()+" est absent de la pièce");
+    if (obj.estDeplacable())
+      throw new ObjetNonDeplacableException(obj.getNom()+"n'est pas déplacable");
     return this.listeObj.retirer(obj.getNom());
   }
 
-  public Objet retirer(String nom){
-    return this.listeObj.retirer(nom);
+  public Objet retirer(String nom) throws ObjetAbsentDeLaPieceException, ObjetNonDeplacableException {
+    if(!this.listeObj.contientObjet(nom))
+      throw new ObjetAbsentDeLaPieceException(nom+" est absent de la pièce");
+    if (!this.listeObj.retirer(nom).estDeplacable())
+      throw new ObjetNonDeplacableException(nom+"n'est pas déplacable");
+      return this.listeObj.retirer(nom);
   }
 
   public Vivant sortir(Vivant vivant) throws VivantAbsentDeLaPieceException{
@@ -36,7 +44,9 @@ public class Piece extends ElementStructurel{
     return this.listeViv.retirer(vivant.getNom());
   }
 
-  public Vivant sortir(String nom){
+  public Vivant sortir(String nom) throws VivantAbsentDeLaPieceException{
+    if(!contientVivant(nom))
+      throw new VivantAbsentDeLaPieceException(nom+" n'est pas dans la piece");
     return this.listeViv.retirer(nom);
   }
 

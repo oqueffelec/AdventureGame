@@ -86,5 +86,15 @@ public class Main{
 		e.printStackTrace();
 		System.exit(-1);
 	}
+	catch(ObjetAbsentDeLaPieceException e){
+		System.err.println(e.getMessage());
+		e.printStackTrace();
+		System.exit(-1);
+	}
+	catch (ObjetNonDeplacableException e){
+		System.err.println(e.getMessage());
+		e.printStackTrace();
+		System.exit(-1);
+	}
 	}
 }
