@@ -2,13 +2,13 @@ package fr.insarouen.asi.prog.asiaventure;
 import org.junit.*;
 import static org.junit.Assert.*;
 import org.hamcrest.core.*;
-import fr.insarouen.asi.prog.asiaventure.Monde;
+import fr.insarouen.asi.prog.asiaventure.*;
 import fr.insarouen.asi.prog.asiaventure.elements.Entite;
 
 public class TestMonde{
 
   Monde monde;
-  Entite entite,entite2;
+  Entite entite;
 
   @Before
   public void avantTest(){
@@ -30,9 +30,9 @@ public class TestMonde{
   public void testConstructeur(){
     assertEquals(monde.getNom(),"Neverwinter");
   }
-/*
-  @Test(expected=NomDEntiteDejaUtiliseDansLeMondeException.class)
+
+  @Test
   public void testajouter(){
-    monde.ajouter(new Entite("Archer",monde){});
-  }*/
+    assertEquals(monde.getEntite("Archer"),entite);
+  }
 }
