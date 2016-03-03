@@ -67,15 +67,15 @@ public class Main{
 			//System.out.println(piece);
 		  //System.out.println(piece.contientObjet(o1));
 			//System.out.println(piece.contientObjet("marteau"));
-			piece.retirer(o1);piece.sortir(v2);v1.deposer(o1);
+			//piece.retirer(o1);//piece.sortir(v2);//v1.deposer(o1);
 			//System.out.println(v1);
-			//System.out.println(piece);
+			System.out.println(piece);
 	}
 	catch(NomDEntiteDejaUtiliseDansLeMondeException e){
 		System.err.println(e.getMessage());
 		e.printStackTrace();
 		System.exit(-1);
-	}
+	}/*
 	catch(VivantAbsentDeLaPieceException e){
 		System.err.println(e.getMessage());
 		e.printStackTrace();
@@ -95,6 +95,6 @@ public class Main{
 		System.err.println(e.getMessage());
 		e.printStackTrace();
 		System.exit(-1);
-	}
+	}*/
 	}
 }

@@ -6,18 +6,19 @@ import org.hamcrest.core.*;
 import fr.insarouen.asi.prog.asiaventure.*;
 import fr.insarouen.asi.prog.asiaventure.elements.objets.*;
 import fr.insarouen.asi.prog.asiaventure.elements.Entite;
+import fr.insarouen.asi.prog.asiaventure.elements.vivants.*;
 
 public class TestPiece{
 
   Monde monde;
   Piece piece;
+  Vivant v1,v2;
   Objet o1,o2;
   Objet[] listObj;
 
   @Before
-  public void avantTest(){
+  public void avantTest() throws NomDEntiteDejaUtiliseDansLeMondeException{
     monde=new Monde("Neverwinter");
-    try{
     piece=new Piece("Salle de torture",monde);
     o1=new Objet("Marteau",monde){
         public boolean estDeplacable(){
@@ -30,11 +31,9 @@ public class TestPiece{
         }
     };
     listObj=new Objet[]{o1,o2};
+    v1=new Vivant("Sir Lancelot",monde,10,4,piece,o1){};
+    v2=new Vivant("Demogorgon",monde,50,6,piece,o2){};
     piece.deposer(listObj);
-    }
-    catch(NomDEntiteDejaUtiliseDansLeMondeException e){
-  		System.err.println(e.getMessage());
-    }
   }
 
   @Test
@@ -43,10 +42,70 @@ public class TestPiece{
   }
 
   @Test
-  public void testgetObjets(){
-    assertThat(piece.getObjets(),IsEqual.equalTo(listObj));
-
+  public void testDeposerObj() throws NomDEntiteDejaUtiliseDansLeMondeException{
+    Objet o3=new Objet("Masse",monde){
+        public boolean estDeplacable(){
+          return true;
+        }
+    };
+    piece.deposer(o3);
+    assertThat(piece.getObjets(),IsEqual.equalTo(new Objet[]{o1,o2,o3}));
   }
 
+  @Test
+  public void testEntrer() throws VivantAbsentDeLaPieceException{
+    piece.sortir(v1);
+    piece.entrer(v1);
+    assertTrue(piece.contientVivant(v1));
+  }
+
+  @Test
+  public void testgetObjets(){
+    assertThat(piece.getObjets(),IsEqual.equalTo(listObj));
+  }
+
+  @Test
+  public void testretirerObj() throws ObjetAbsentDeLaPieceException,ObjetNonDeplacableException{
+    piece.retirer(o1);
+    assertThat(piece.getObjets(),IsEqual.equalTo(new Objet[]{o2}));
+  }
+
+  @Test
+  public void testretirerNom() throws ObjetAbsentDeLaPieceException,ObjetNonDeplacableException{
+    piece.retirer("Marteau");
+    assertThat(piece.getObjets(),IsEqual.equalTo(new Objet[]{o2}));
+  }
+
+  @Test
+  public void testcontientVivantViv(){
+    assertTrue(piece.contientVivant(v1));
+  }
+
+  @Test
+  public void testcontientVivantNom(){
+    assertTrue(piece.contientVivant("Sir Lancelot"));
+  }
+
+  @Test
+  public void testsortirVivant() throws VivantAbsentDeLaPieceException{
+    piece.sortir(v1);
+    assertFalse(piece.contientVivant(v1));
+  }
+
+  @Test
+  public void testsortirNom() throws VivantAbsentDeLaPieceException{
+    piece.sortir("Sir Lancelot");
+    assertFalse(piece.contientVivant(v1));
+  }
+
+  @Test
+  public void testcontientObjetObj(){
+    assertTrue(piece.contientObjet(o1));
+  }
+
+  @Test
+  public void testcontientObjetNom(){
+    assertTrue(piece.contientObjet("Marteau"));
+  }
 
 }
