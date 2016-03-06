@@ -47,7 +47,7 @@ public abstract class Vivant extends Entite {
   }
 
   public boolean estMort(){
-    return this.pointVie==0;
+    return (this.pointVie==0);
   }
 
   public Objet getObjet(java.lang.String nomObjet){
@@ -90,7 +90,7 @@ public abstract class Vivant extends Entite {
   public void prendre(Objet obj) throws ObjetAbsentDeLaPieceException, ObjetNonDeplacableException{
     if(!this.piece.contientObjet(obj))
       throw new ObjetAbsentDeLaPieceException(obj.getNom()+" est absent de la pièce");
-    if (obj.estDeplacable())
+    if (!obj.estDeplacable())
       throw new ObjetNonDeplacableException(obj.getNom()+"n'est pas déplacable");
     this.listeObjs.deposer(obj);
   }
