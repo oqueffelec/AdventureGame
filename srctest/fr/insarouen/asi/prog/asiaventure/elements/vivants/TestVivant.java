@@ -21,6 +21,9 @@ public class TestVivant{
   Objet o1,o2;
   Map<String,Objet> listeOb;
 
+
+
+
   @Before
   public void avantTest() throws NomDEntiteDejaUtiliseDansLeMondeException{
      monde= new Monde("monde");
@@ -36,11 +39,12 @@ public class TestVivant{
            }
        };
     entite=new Entite("voila",monde){};
-    listeOb.put(entite.getNom(),o1);
-    listeOb.put(entite.getNom(),o2);
+    listeOb=new HashMap<>();
+    listeOb.put(o1.getNom(),o1);
+    listeOb.put(o2.getNom(),o2);
      vivant=new Vivant("Drizzt",monde,0,0,piece,listeOb){};
-     piece.deposer(new Objet[]{o1,o2});
-
+     piece.deposer(o1);
+     piece.deposer(o2);
     }
 
     @Test
@@ -51,7 +55,7 @@ public class TestVivant{
     @Test
     public void testDeposer() throws ObjetNonPossedeParLeVivantException{
       vivant.deposer(o1);
-      assertFalse(vivant.possede(o1));
+      assertTrue(vivant.possede(o1));
     }
 
     @Test
@@ -62,6 +66,8 @@ public class TestVivant{
 
     @Test(expected=NomDEntiteDejaUtiliseDansLeMondeException.class)
     public void testConstructeurVivant() throws NomDEntiteDejaUtiliseDansLeMondeException{
+
       Vivant vivant2=new Vivant("Drizzt",monde,0,0,piece,listeOb){};
     }
-}
+
+    }

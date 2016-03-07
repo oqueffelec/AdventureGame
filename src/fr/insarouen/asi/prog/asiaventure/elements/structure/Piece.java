@@ -6,77 +6,70 @@ import fr.insarouen.asi.prog.asiaventure.elements.objets.*;
 import fr.insarouen.asi.prog.asiaventure.lib.*;
 import fr.insarouen.asi.prog.asiaventure.*;
 import fr.insarouen.asi.prog.asiaventure.elements.vivants.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Collection;
+import java.util.Iterator;
 
 public class Piece extends ElementStructurel{
 
-  ListeObjet listeObj;
-  ListeVivant listeViv;
+  Map<String,Objet> listeObj;
+  Map<String,Vivant> listeViv;
 
   public Piece(String nom,Monde monde) throws NomDEntiteDejaUtiliseDansLeMondeException{
     super(nom,monde);
-    this.listeObj=new ListeObjet();
-    this.listeViv=new ListeVivant();
+    this.listeObj=new HashMap<>();
+    this.listeViv=new HashMap<>();
   }
 
-  public Objet[] getObjets(){
-      return this.listeObj.getObjets();
+  public Collection<Objet> getObjets(){
+      return this.listeObj.values();
   }
 
   public Objet retirer(Objet obj) throws ObjetAbsentDeLaPieceException, ObjetNonDeplacableException{
-    if(!this.listeObj.contientObjet(obj))
-      throw new ObjetAbsentDeLaPieceException(obj.getNom()+" est absent de la pièce");
-    if (!obj.estDeplacable())
-      throw new ObjetNonDeplacableException(obj.getNom()+"n'est pas déplacable");
-    return this.listeObj.retirer(obj.getNom());
+    return (this.retirer(obj.getNom()));
   }
 
   public Objet retirer(String nom) throws ObjetAbsentDeLaPieceException, ObjetNonDeplacableException {
-    if(!this.listeObj.contientObjet(nom))
+    if(!this.listeObj.containsKey(nom))
       throw new ObjetAbsentDeLaPieceException(nom+" est absent de la pièce");
-    if (!(this.listeObj.retirer(nom).estDeplacable()))
+    if (!(this.listeObj.remove(nom).estDeplacable()))
       throw new ObjetNonDeplacableException(nom+"n'est pas déplacable");
-      return this.listeObj.retirer(nom);
+      return this.listeObj.remove(nom);
   }
 
   public Vivant sortir(Vivant vivant) throws VivantAbsentDeLaPieceException{
-    if(!this.contientVivant(vivant))
-      throw new VivantAbsentDeLaPieceException(vivant.getNom()+" n'est pas dans la piece");
-    return this.listeViv.retirer(vivant.getNom());
+    return(this.sortir(vivant.getNom()));
   }
 
   public Vivant sortir(String nom) throws VivantAbsentDeLaPieceException{
-    if(!contientVivant(nom))
+    if(!this.listeViv.containsKey(nom))
       throw new VivantAbsentDeLaPieceException(nom+" n'est pas dans la piece");
-    return this.listeViv.retirer(nom);
+    return this.listeViv.remove(nom);
   }
 
   public boolean contientObjet(Objet objet){
-    return this.listeObj.contientObjet(objet.getNom());
+    return this.listeObj.containsValue(objet);
   }
 
   public boolean contientObjet(String nom){
-    return this.listeObj.contientObjet(nom);
+    return this.listeObj.containsKey(nom);
   }
 
   public boolean contientVivant(Vivant vivant){
-    return this.listeViv.contientVivant(vivant);
+    return this.listeViv.containsValue(vivant);
   }
 
   public boolean contientVivant(String nom){
-    return this.listeViv.contientVivant(nom);
+    return this.listeViv.containsKey(nom);
   }
 
   public void deposer(Objet obj){
-    this.listeObj.deposer(obj);
-  }
-
-  public void deposer(Objet[] objets){
-    for(int i=0;i<objets.length;i++)
-      this.listeObj.deposer(objets[i]);
+    this.listeObj.put(obj.getNom(),obj);
   }
 
   public void entrer(Vivant vivant){
-    this.listeViv.deposer(vivant);
+    this.listeViv.put(vivant.getNom(),vivant);
   }
 
   public String toString(){
@@ -84,21 +77,20 @@ public class Piece extends ElementStructurel{
     desc.append("Piece ");
     desc.append(super.toString());
     desc.append(" -- liste des objets : ");
-    for(int i=0;i<this.listeObj.getTaille();i++){
+    for(String i :this.listeObj.keySet()){
       desc.append("Objet ");
-      desc.append(i+1);
       desc.append(" : ");
-      desc.append(this.listeObj.getObjet(i).getNom());
+      desc.append(i);
       desc.append(" --- ");
     }
     desc.append(" Liste des vivants : ");
-    for(int i=0;i<this.listeViv.getTaille();i++){
+    for(String i : this.listeViv.keySet()){
       desc.append("Vivant ");
-      desc.append(i+1);
       desc.append(" : ");
-      desc.append(this.listeViv.getVivant(i).getNom());
+      desc.append(i);
       desc.append(" --- ");
     }
     return desc.toString();
   }
+
 }
