@@ -24,11 +24,11 @@ public class Porte extends ElementStructurel implements Activable{
     return (obj.equals(activableObjet));
   };
 
-  public void activer(){
+  public void activer() throws ActivationImpossibleException{
     this.etat=Etat.valueOf("OUVERT");
   };
 
-  public void activerAvec(Objet obj){
+  public void activerAvec(Objet obj) throws ActivationImpossibleAvecObjetException,ActivationImpossibleException{
     this.activableObjet=obj;
   };
 
@@ -42,6 +42,7 @@ public class Porte extends ElementStructurel implements Activable{
     else
       return p1;
   }
+
 
   public String toString(){
     StringBuilder sb=new StringBuilder();

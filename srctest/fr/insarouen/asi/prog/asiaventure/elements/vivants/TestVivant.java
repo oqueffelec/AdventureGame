@@ -16,9 +16,10 @@ import java.util.Set;
 public class TestVivant{
   Vivant vivant;
   Monde monde;
-  Piece piece;
+  Piece piece,piece2;
   Entite entite;
   Objet o1,o2;
+  Porte p1;
   Map<String,Objet> listeOb;
 
 
@@ -28,6 +29,7 @@ public class TestVivant{
   public void avantTest() throws NomDEntiteDejaUtiliseDansLeMondeException{
      monde= new Monde("monde");
      piece=new Piece("Salle de Torture",monde);
+     piece2=new Piece("piece2",monde);
      o1=new Objet("marteau",monde){
            public boolean estDeplacable(){
              return true;
@@ -39,6 +41,7 @@ public class TestVivant{
            }
        };
     entite=new Entite("voila",monde){};
+    p1=new Porte("p1",monde,piece,piece2);
     listeOb=new HashMap<>();
     listeOb.put(o1.getNom(),o1);
     listeOb.put(o2.getNom(),o2);
@@ -50,6 +53,12 @@ public class TestVivant{
     @Test
     public void testestMort() {
       assertTrue(vivant.estMort());
+    }
+
+    @Test(expected=PorteFermeException.class)
+    public void testFranchirPorte() throws PorteFermeException,PorteInexistanteDansLaPieceException{
+      vivant.franchir(p1);
+      assertTrue(vivant.getPiece().equals(piece2));
     }
 
     @Test

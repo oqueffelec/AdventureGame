@@ -34,7 +34,27 @@ public abstract class Vivant extends Entite {
 
   // Méthodes
 
+  public void activerActivable(Activable activable) throws ActivationException{
+      activable.activer();
+  }
 
+  public void activerActivableAvecObjet(Activable activable,Objet objet) throws ActivationException{
+    activable.activerAvec(objet);
+  }
+
+  public void franchir(Porte porte) throws PorteFermeException,PorteInexistanteDansLaPieceException{
+    if(porte.getEtat().toString().equals("FERME"))
+      throw new PorteFermeException("Porte fermée");
+    if(!this.piece.aLaPorte(porte))
+      throw new PorteInexistanteDansLaPieceException("La porte n'existe pas dans la piece !");
+
+    this.piece=porte.getPieceAutreCote(this.piece);
+  }
+
+/*
+  public void franchir(String nom){
+    this.piece=porte.getPieceAutreCote(this.piece);
+  }*/
 
 
   public void deposer(Objet obj) throws ObjetNonPossedeParLeVivantException{

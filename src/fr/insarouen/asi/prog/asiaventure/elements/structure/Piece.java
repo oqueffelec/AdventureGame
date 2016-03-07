@@ -5,6 +5,7 @@ import fr.insarouen.asi.prog.asiaventure.elements.vivants.*;
 import fr.insarouen.asi.prog.asiaventure.elements.objets.*;
 import fr.insarouen.asi.prog.asiaventure.lib.*;
 import fr.insarouen.asi.prog.asiaventure.*;
+import fr.insarouen.asi.prog.asiaventure.elements.*;
 import fr.insarouen.asi.prog.asiaventure.elements.vivants.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,11 +16,29 @@ public class Piece extends ElementStructurel{
 
   Map<String,Objet> listeObj;
   Map<String,Vivant> listeViv;
+  Map<String,Porte> listePortes;
 
   public Piece(String nom,Monde monde) throws NomDEntiteDejaUtiliseDansLeMondeException{
     super(nom,monde);
     this.listeObj=new HashMap<>();
     this.listeViv=new HashMap<>();
+    this.listePortes=new HashMap<>();
+  }
+
+  public void addPorte(Porte porte){
+    this.listePortes.put(porte.getNom(),porte);
+  }
+
+  public boolean aLaPorte(Porte porte){
+    return this.listePortes.containsValue(porte);
+  }
+
+  public boolean aLaPorte(String nom){
+    return this.listePortes.containsKey(nom);
+  }
+
+  public Porte getPorte(String nom){
+    return this.listePortes.get(nom);
   }
 
   public Collection<Objet> getObjets(){

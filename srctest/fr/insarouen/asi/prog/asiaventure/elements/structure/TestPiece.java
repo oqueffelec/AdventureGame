@@ -16,16 +16,18 @@ import java.util.ArrayList;
 public class TestPiece{
 
   Monde monde;
-  Piece piece;
+  Piece piece,piece2;
   Vivant v1,v2;
   Objet o1,o2;
   Entite entite;
+  Porte p1,p2;
   Map<String,Objet> listeOb;
 
   @Before
   public void avantTest() throws NomDEntiteDejaUtiliseDansLeMondeException{
     monde=new Monde("Neverwinter");
     piece=new Piece("Salle de torture",monde);
+    piece2=new Piece("Piece 2",monde);
     o1=new Objet("Marteau",monde){
         public boolean estDeplacable(){
           return true;
@@ -36,6 +38,8 @@ public class TestPiece{
           return true;
         }
     };
+    p1=new Porte("p1",monde,piece,piece2);
+    p2=new Porte("p2",monde,piece,piece2);
     entite=new Entite("voila",monde){};
     listeOb=new HashMap<>();
     listeOb.put(entite.getNom(),o1);
@@ -49,18 +53,19 @@ public class TestPiece{
   public void testConstructeur(){
     assertThat(monde.getEntite("Salle de torture"),IsSame.sameInstance(piece));
   }
-/*
+
   @Test
-  public void testDeposerObj() throws NomDEntiteDejaUtiliseDansLeMondeException{
-    Objet o3=new Objet("Masse",monde){
-        public boolean estDeplacable(){
-          return true;
-        }
-    };
-    piece.deposer(o3);
-    assertThat(piece.getObjets(),IsEqual.equalTo(new Objet[]{o1,o2,o3}));
+  public void testAddPorte(){
+    piece.addPorte(p1);
+    assertTrue(piece.aLaPorte(p1));
   }
-*/
+
+  @Test
+  public void testgetPorte(){
+    piece.addPorte(p1);
+    assertTrue(piece.aLaPorte(piece.getPorte("p1")));
+  }
+
   @Test
   public void testEntrer() throws VivantAbsentDeLaPieceException{
     piece.sortir(v1);
