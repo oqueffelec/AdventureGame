@@ -15,7 +15,7 @@ public class TestVivant{
   Piece piece;
   Entite entite;
   Objet o1,o2;
-
+/*
   @Before
   public void avantTest() throws NomDEntiteDejaUtiliseDansLeMondeException{
      monde= new Monde("monde");
@@ -55,5 +55,5 @@ public class TestVivant{
     @Test(expected=NomDEntiteDejaUtiliseDansLeMondeException.class)
     public void testConstructeurVivant() throws NomDEntiteDejaUtiliseDansLeMondeException{
       Vivant vivant2=new Vivant("Drizzt",monde,0,0,piece,o1){};
-    }
+    }*/
 }
