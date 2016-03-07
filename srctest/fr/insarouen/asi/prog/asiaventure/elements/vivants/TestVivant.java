@@ -8,6 +8,10 @@ import fr.insarouen.asi.prog.asiaventure.elements.Entite;
 import fr.insarouen.asi.prog.asiaventure.elements.vivants.*;
 import fr.insarouen.asi.prog.asiaventure.elements.structure.*;
 import fr.insarouen.asi.prog.asiaventure.elements.objets.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Iterator;
+import java.util.Set;
 
 public class TestVivant{
   Vivant vivant;
@@ -15,6 +19,7 @@ public class TestVivant{
   Piece piece;
   Entite entite;
   Objet o1,o2;
+  Map<String,Objet> listeOb;
 
   @Before
   public void avantTest() throws NomDEntiteDejaUtiliseDansLeMondeException{
@@ -30,7 +35,10 @@ public class TestVivant{
              return true;
            }
        };
-     vivant=new Vivant("Drizzt",monde,0,0,piece,o1){};
+    entite=new Entite("voila",monde){};
+    listeOb.put(entite.getNom(),o1);
+    listeOb.put(entite.getNom(),o2);
+     vivant=new Vivant("Drizzt",monde,0,0,piece,listeOb){};
      piece.deposer(new Objet[]{o1,o2});
 
     }
@@ -47,13 +55,13 @@ public class TestVivant{
     }
 
     @Test
-    public void testPrendre() throws ObjetAbsentDeLaPieceException,ObjetNonDeplacableException{
+    public void testPrendre() throws ObjetAbsentDeLaPieceException,ObjetNonDeplacableException,ObjetNonPossedeParLeVivantException{
       vivant.prendre(o1);
       assertTrue(vivant.possede(o1));
     }
 
     @Test(expected=NomDEntiteDejaUtiliseDansLeMondeException.class)
     public void testConstructeurVivant() throws NomDEntiteDejaUtiliseDansLeMondeException{
-      Vivant vivant2=new Vivant("Drizzt",monde,0,0,piece,o1){};
+      Vivant vivant2=new Vivant("Drizzt",monde,0,0,piece,listeOb){};
     }
 }

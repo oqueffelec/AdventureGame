@@ -17,58 +17,54 @@ public abstract class Vivant extends Entite {
   private int pointVie;
   private int pointForce;
   private Piece piece;
-  private ListeObjet listeObjs;
+  private Map<String,Objet> listeObjet;
 
   // Construteur
 
-  public Vivant(java.lang.String nom, Monde monde, int pointVie, int pointForce, Piece piece, Objet... objets) throws NomDEntiteDejaUtiliseDansLeMondeException {
+  public Vivant(java.lang.String nom, Monde monde, int pointVie, int pointForce, Piece piece, Map<String,Objet> listeOb) throws NomDEntiteDejaUtiliseDansLeMondeException {
     super(nom,monde);
     this.pointVie=pointVie;
     this.pointForce=pointForce;
     this.piece=piece;
-    this.listeObjs=new ListeObjet(objets);
+    this.listeObjet=new HashMap<String,Objet>();
+    this.listeObjet.putAll(listeOb);
     piece.entrer(this);
   }
 
 
   // Méthodes
 
-  public void deposer(java.lang.String nomObj) throws ObjetNonPossedeParLeVivantException{
-    if(!this.listeObjs.contientObjet(nomObj))
-      throw new ObjetNonPossedeParLeVivantException(nomObj+" n'est pas possede par le vivant");
-    this.listeObjs.retirer(nomObj);
-  }
+
 
 
   public void deposer(Objet obj) throws ObjetNonPossedeParLeVivantException{
-    if(!this.listeObjs.contientObjet(obj))
+    if(!this.listeObjet.containsValue(obj))
       throw new ObjetNonPossedeParLeVivantException(obj.getNom()+" n'est pas possede par le vivant");
-    this.listeObjs.retirer(obj);
+      this.listeObjet.remove(obj);
   }
+
+
+  public void deposer(java.lang.String nomObj) throws ObjetNonPossedeParLeVivantException{
+    if(!this.listeObjet.containsValue(nomObj))
+      throw new ObjetNonPossedeParLeVivantException(nomObj+" n'est pas possede par le vivant");
+      this.listeObjet.remove(nomObj);
+  }
+
 
   public boolean estMort(){
     return (this.pointVie==0);
   }
 
-  public Objet getObjet(java.lang.String nomObjet){
+  public Objet getObjet(java.lang.String nomObjet) throws ObjetNonPossedeParLeVivantException{
     int i=0;
-    if (!this.listeObjs.contientObjet(nomObjet)){
-      return null;
+    if (!this.listeObjet.containsValue(nomObjet)){
+      throw new ObjetNonPossedeParLeVivantException(nomObjet+" n'est pas possede par le vivant");
     }
-    else {
-      while (this.listeObjs.getObjet(i).getNom().equals(nomObjet)){
-        i++;
-      }
-      return this.listeObjs.getObjet(i);
-    }
+    return this.listeObjet.get(nomObjet);
   }
 
-  public java.util.HashMap<java.lang.String,Objet> getObjets(){
-    java.util.HashMap<java.lang.String,Objet> tmp=new java.util.HashMap<java.lang.String,Objet>();
-    for(int i=0;i<this.listeObjs.getTaille();i++){
-      tmp.put(this.listeObjs.getObjet(i).getNom(),this.listeObjs.getObjet(i));
-    }
-    return tmp;
+  public Map<java.lang.String,Objet> getObjets(){
+    return this.listeObjet;
   }
 
   public Piece getPiece(){
@@ -84,23 +80,23 @@ public abstract class Vivant extends Entite {
   }
 
   public boolean possede(Objet obj){
-    return this.listeObjs.contientObjet(obj);
+    return this.listeObjet.containsValue(obj);
   }
 
-  public void prendre(Objet obj) throws ObjetAbsentDeLaPieceException, ObjetNonDeplacableException{
+  public void prendre(Objet obj) throws ObjetAbsentDeLaPieceException, ObjetNonDeplacableException, ObjetNonPossedeParLeVivantException{
     if(!this.piece.contientObjet(obj))
       throw new ObjetAbsentDeLaPieceException(obj.getNom()+" est absent de la pièce");
     if (!obj.estDeplacable())
       throw new ObjetNonDeplacableException(obj.getNom()+"n'est pas déplacable");
-    this.listeObjs.deposer(obj);
+      deposer(obj);
   }
 
-  public void prendre(java.lang.String nomObj) throws ObjetAbsentDeLaPieceException, ObjetNonDeplacableException{
+  public void prendre(java.lang.String nomObj) throws ObjetAbsentDeLaPieceException, ObjetNonDeplacableException, ObjetNonPossedeParLeVivantException{
     if(!this.piece.contientObjet(nomObj))
       throw new ObjetAbsentDeLaPieceException(nomObj+" est absent de la pièce");
     if (!this.piece.retirer(nomObj).estDeplacable())
       throw new ObjetNonDeplacableException(nomObj+"n'est pas déplacable");
-    this.listeObjs.deposer(this.getObjet(nomObj));
+      deposer(this.getObjet(nomObj));
   }
 
   public java.lang.String toString(){
@@ -115,10 +111,10 @@ public abstract class Vivant extends Entite {
     desc.append(getPointForce()).append("\n");
     desc.append(getPiece()).append("\n");
     desc.append("Liste des Objets").append("\n");
-    for (int i=0;i<this.listeObjs.getTaille();i++){
+    for (String i : this.listeObjet.keySet()){
       desc.append("Objet ");
       desc.append(i+1).append(" ");
-      desc.append(this.listeObjs.getObjet(i)).append(" -- ");
+      desc.append(this.listeObjet.get(i)).append(" -- ");
     }
     return desc.toString();
   }
