@@ -7,6 +7,10 @@ import fr.insarouen.asi.prog.asiaventure.elements.objets.*;
 import fr.insarouen.asi.prog.asiaventure.elements.structure.*;
 import fr.insarouen.asi.prog.asiaventure.lib.ListeObjet;
 import fr.insarouen.asi.prog.asiaventure.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Iterator;
+import java.util.Set;
 
 public class Main{
 
@@ -56,10 +60,15 @@ public class Main{
 
 			//test vivant
 			Objet[] objets=new Objet[]{o1,o2,o3};
-			Vivant v1=new Vivant("Sir Lancelot",m,10,4,piece,o1){};
-			Vivant v2=new Vivant("Demogorgon",m,50,6,piece,o2){};
-			Vivant v3=new Vivant("Drizzt",m,8,3,piece,o3){};
-			Vivant v4=new Vivant("Thorgal",m,18,8,piece2,objets){};
+			Map<String,Objet> listeOb;
+			listeOb=new HashMap<>();
+	    listeOb.put(o1.getNom(),o1);
+	    listeOb.put(o2.getNom(),o2);
+			listeOb.put(o3.getNom(),o3);
+			Vivant v1=new Vivant("Sir Lancelot",m,10,4,piece,listeOb){};
+			Vivant v2=new Vivant("Demogorgon",m,50,6,piece,listeOb){};
+			Vivant v3=new Vivant("Drizzt",m,8,3,piece,listeOb){};
+			Vivant v4=new Vivant("Thorgal",m,18,8,piece2,listeOb){};
 			//System.out.println(piece);
 			//System.out.println(v1.estMort());
 
