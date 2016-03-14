@@ -51,4 +51,13 @@ public class Serrure extends Objet implements Activable{
   public Etat getEtat(){
     return this.etat;
   }
+
+  public String toString(){
+    StringBuilder sb=new StringBuilder();
+    sb.append(super.toString());
+    sb.append(" Etat ");
+    sb.append(this.etat);
+
+    return sb.toString();
+  }
 }
