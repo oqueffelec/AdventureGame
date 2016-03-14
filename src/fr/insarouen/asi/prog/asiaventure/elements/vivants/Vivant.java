@@ -124,6 +124,10 @@ public abstract class Vivant extends Entite {
       deposer(this.getObjet(nomObj));
   }
 
+  public void setPointsDeVie(int pointdevie){
+    this.pointVie=pointdevie;
+  }
+
   public java.lang.String toString(){
     StringBuilder desc =new StringBuilder();
     desc.append("---Vivant---").append("\n");

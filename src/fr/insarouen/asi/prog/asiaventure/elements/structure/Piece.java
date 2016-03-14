@@ -45,6 +45,10 @@ public class Piece extends ElementStructurel{
       return this.listeObj.values();
   }
 
+  public Collection<Porte> getPortes() {
+    return this.listePortes.values();
+  }
+
   public Objet retirer(Objet obj) throws ObjetAbsentDeLaPieceException, ObjetNonDeplacableException{
     return (this.retirer(obj.getNom()));
   }
