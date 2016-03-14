@@ -51,10 +51,15 @@ public abstract class Vivant extends Entite {
     this.piece=porte.getPieceAutreCote(this.piece);
   }
 
-/*
-  public void franchir(String nom){
-    this.piece=porte.getPieceAutreCote(this.piece);
-  }*/
+
+  public void franchir(String nom) throws PorteFermeException,PorteInexistanteDansLaPieceException{
+    if (this.piece.getPorte(nom).getEtat().toString().equals("FERME"))
+      throw new PorteFermeException("Porte fermée");
+    if(!this.piece.aLaPorte(this.piece.getPorte(nom)))
+      throw new PorteInexistanteDansLaPieceException("La porte n'existe pas dans la piece !");
+
+    this.piece=this.piece.getPorte(nom).getPieceAutreCote(this.piece);
+  }
 
 
   public void deposer(Objet obj) throws ObjetNonPossedeParLeVivantException{

@@ -22,9 +22,6 @@ public class TestVivant{
   Porte p1;
   Map<String,Objet> listeOb;
 
-
-
-
   @Before
   public void avantTest() throws NomDEntiteDejaUtiliseDansLeMondeException{
      monde= new Monde("monde");
@@ -48,6 +45,7 @@ public class TestVivant{
      vivant=new Vivant("Drizzt",monde,0,0,piece,listeOb){};
      piece.deposer(o1);
      piece.deposer(o2);
+     piece.addPorte(p1);
     }
 
     @Test
@@ -58,6 +56,12 @@ public class TestVivant{
     @Test(expected=PorteFermeException.class)
     public void testFranchirPorte() throws PorteFermeException,PorteInexistanteDansLaPieceException{
       vivant.franchir(p1);
+      assertTrue(vivant.getPiece().equals(piece2));
+    }
+
+    @Test(expected=PorteFermeException.class)
+    public void testFranchirPorteNom() throws PorteFermeException,PorteInexistanteDansLaPieceException{
+      vivant.franchir(p1.getNom());
       assertTrue(vivant.getPiece().equals(piece2));
     }
 
