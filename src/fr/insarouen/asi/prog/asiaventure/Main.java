@@ -69,6 +69,8 @@ public class Main{
 			Vivant v2=new Vivant("Demogorgon",m,50,6,piece,listeOb){};
 			Vivant v3=new Vivant("Drizzt",m,8,3,piece,listeOb){};
 			Vivant v4=new Vivant("Thorgal",m,18,8,piece2,listeOb){};
+			Monstre mo=new Monstre("Bossu",m,24,45,piece,listeOb){};
+			System.out.println(mo.toString());
 			//System.out.println(piece);
 			//System.out.println(v1.estMort());
 

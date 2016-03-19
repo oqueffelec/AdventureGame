@@ -128,6 +128,10 @@ public abstract class Vivant extends Entite {
     this.pointVie=pointdevie;
   }
 
+  public void setPiece(Piece lapiece){
+    this.piece=lapiece;
+  }
+
   public java.lang.String toString(){
     StringBuilder desc =new StringBuilder();
     desc.append("---Vivant---").append("\n");
