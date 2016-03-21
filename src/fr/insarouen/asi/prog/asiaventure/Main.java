@@ -5,7 +5,7 @@ import java.io.*;
 
 public class Main{
 
-	public static void main(String[] args) throws FileNotFoundException,IOException {
+	public static void main(String[] args) throws FileNotFoundException,IOException,NomDEntiteDejaUtiliseDansLeMondeException {
 		// Representation du Menu
 		int choix; // pour le Menu
 		Scanner sc = new Scanner(System.in);
@@ -19,15 +19,14 @@ public class Main{
 			sc.nextLine();
 			FileOutputStream f1=new FileOutputStream("saves/sauvegarde");
 			FileReader f2=new FileReader("saves/exemplesimulation1.aa");
-			Simulateur s=new Simulateur(f2);
-			s.enregistrer(new ObjectOutputStream(f1));
+			Simulateur s;
 
 			switch(choix){
 				case 1 :
 				break;
-				case 2 :
+				case 2 :	s=new Simulateur(f2);
 				break;
-				case 3 :
+				case 3 :	new Simulateur(f2).enregistrer(new ObjectOutputStream(f1));
 				break;
 				case 4 :
 				break;

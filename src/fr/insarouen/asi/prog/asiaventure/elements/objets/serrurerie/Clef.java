@@ -6,8 +6,8 @@ import fr.insarouen.asi.prog.asiaventure.*;
 
 public final class Clef extends Objet{
 
-  protected Clef(String nom,Monde monde) throws NomDEntiteDejaUtiliseDansLeMondeException{
-    super(nom,monde);
+  public Clef(String nom,Monde monde) throws NomDEntiteDejaUtiliseDansLeMondeException{
+    super(nom,monde); //conflit nom porte1 !!! une cle=pas de nom !!!
   }
 
   public boolean estDeplacable(){
