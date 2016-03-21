@@ -53,7 +53,7 @@ public class Piece extends ElementStructurel{
     return this.listePortes.values();
   }
 
-  public Objet retirer(Objet obj) throws ObjetAbsentDeLaPieceException, ObjetNonDeplacableException{
+  public Objet retirer(Objet obj) thrototalite des donnees necessaires pour reprendre le jeu plus tard.ws ObjetAbsentDeLaPieceException, ObjetNonDeplacableException{
     return (this.retirer(obj.getNom()));
   }
 
