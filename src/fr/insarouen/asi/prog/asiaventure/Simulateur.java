@@ -25,27 +25,34 @@ public class Simulateur extends java.lang.Object {
     ois.close();
   }
 
-  public Simulateur(Reader reader) throws IOException{/*
+  public Simulateur(Reader reader) throws IOException{
     StreamTokenizer st=new StreamTokenizer(reader);
     st.nextToken();
-    switch(st.sval){
-      case "Monde" :  construireMonde(st);
-      break;
-      case "Piece" :
-      break;
-      case "Porte" :
-      break;
-      case "PorteSerrure" :
-      break;
-      case "Clef" :
-      break;
-      case "JoueurHumain" :
-      break;
-    }*/
+    while(st.nextToken()!=st.TT_EOF){
+      switch(st.sval){//ERREUR VIENT DU FAIT QU IL FAUT TRAITER LE RESTE DES CASE ///
+        case "Monde" :  construireMonde(st);
+        break;/*
+        case "Piece" :
+        break;
+        case "Porte" :
+        break;
+        case "PorteSerrure" :
+        break;
+        case "Clef" :
+        break;
+        case "JoueurHumain" :
+        break;*/
+      }
+    }
   }
 
   public void enregistrer(ObjectOutputStream oos) throws IOException{
     oos.writeObject(this.monde);
     oos.close();
+  }
+
+  public void construireMonde(StreamTokenizer st) throws IOException{
+    st.nextToken();
+    monde=new Monde(st.sval);
   }
 }
