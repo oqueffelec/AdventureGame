@@ -1,21 +1,11 @@
 package fr.insarouen.asi.prog.asiaventure;
 
-import fr.insarouen.asi.prog.asiaventure.*;
-import fr.insarouen.asi.prog.asiaventure.elements.*;
-import fr.insarouen.asi.prog.asiaventure.elements.vivants.*;
-import fr.insarouen.asi.prog.asiaventure.elements.objets.*;
-import fr.insarouen.asi.prog.asiaventure.elements.structure.*;
-import fr.insarouen.asi.prog.asiaventure.lib.ListeObjet;
-import fr.insarouen.asi.prog.asiaventure.*;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Iterator;
-import java.util.Set;
 import java.util.Scanner;
+import java.io.*;
 
 public class Main{
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException,IOException {
 		// Representation du Menu
 		int choix; // pour le Menu
 		Scanner sc = new Scanner(System.in);
@@ -27,6 +17,10 @@ public class Main{
 			System.out.println("Quel Choix ?");
 			choix = sc.nextInt();
 			sc.nextLine();
+			FileOutputStream f1=new FileOutputStream("saves/sauvegarde");
+			FileReader f2=new FileReader("saves/exemplesimulation1.aa");
+			Simulateur s=new Simulateur(f2);
+			s.enregistrer(new ObjectOutputStream(f1));
 
 			switch(choix){
 				case 1 :

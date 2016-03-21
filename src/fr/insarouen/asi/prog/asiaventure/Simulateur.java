@@ -18,18 +18,34 @@ import java.lang.*;
 
 public class Simulateur extends java.lang.Object {
 
-  // Constructeur
+  private Monde monde;
 
   public Simulateur(ObjectInputStream ois) throws IOException,ClassNotFoundException{
-
-  }
-  public Simulateur(Reader reader) throws IOException{
-
+    ois.readObject();
+    ois.close();
   }
 
-  // Methodes
+  public Simulateur(Reader reader) throws IOException{/*
+    StreamTokenizer st=new StreamTokenizer(reader);
+    st.nextToken();
+    switch(st.sval){
+      case "Monde" :  construireMonde(st);
+      break;
+      case "Piece" :
+      break;
+      case "Porte" :
+      break;
+      case "PorteSerrure" :
+      break;
+      case "Clef" :
+      break;
+      case "JoueurHumain" :
+      break;
+    }*/
+  }
 
   public void enregistrer(ObjectOutputStream oos) throws IOException{
-    
+    oos.writeObject(this.monde);
+    oos.close();
   }
 }
