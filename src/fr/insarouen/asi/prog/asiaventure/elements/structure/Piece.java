@@ -41,6 +41,10 @@ public class Piece extends ElementStructurel{
     return this.listePortes.get(nom);
   }
 
+  public Objet getObjet(String nom){
+    return this.listeObj.get(nom);
+  }
+
   public Collection<Objet> getObjets(){
       return this.listeObj.values();
   }

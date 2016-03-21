@@ -108,20 +108,20 @@ public abstract class Vivant extends Entite {
     return this.listeObjet.containsValue(obj);
   }
 
-  public void prendre(Objet obj) throws ObjetAbsentDeLaPieceException, ObjetNonDeplacableException, ObjetNonPossedeParLeVivantException{
+  public void prendre(Objet obj) throws ObjetAbsentDeLaPieceException, ObjetNonDeplacableException{
     if(!this.piece.contientObjet(obj))
       throw new ObjetAbsentDeLaPieceException(obj.getNom()+" est absent de la pièce");
     if (!obj.estDeplacable())
       throw new ObjetNonDeplacableException(obj.getNom()+"n'est pas déplacable");
-      deposer(obj);
+      this.listeObjet.put(obj.getNom(),obj);
   }
 
-  public void prendre(java.lang.String nomObj) throws ObjetAbsentDeLaPieceException, ObjetNonDeplacableException, ObjetNonPossedeParLeVivantException{
+  public void prendre(java.lang.String nomObj) throws ObjetAbsentDeLaPieceException, ObjetNonDeplacableException{
     if(!this.piece.contientObjet(nomObj))
       throw new ObjetAbsentDeLaPieceException(nomObj+" est absent de la pièce");
     if (!this.piece.retirer(nomObj).estDeplacable())
       throw new ObjetNonDeplacableException(nomObj+"n'est pas déplacable");
-      deposer(this.getObjet(nomObj));
+      this.listeObjet.put(nomObj,this.getPiece().getObjet(nomObj));
   }
 
   public void setPointsDeVie(int pointdevie){
