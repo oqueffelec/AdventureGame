@@ -42,6 +42,8 @@ public class Simulateur extends java.lang.Object {
         break;
         case "JoueurHumain" : construireJoueurHumain(st);
         break;
+        case "ConditionDeFinVivantDansPiece" : construireConditionDeFinVivantDansPiece(st);
+        break;
       }
     }
   }
@@ -98,5 +100,15 @@ public class Simulateur extends java.lang.Object {
     Map hm=new HashMap<String,Objet>();
     new JoueurHumain(nomPorte,this.monde,hp,str,(Piece)(this.monde.getEntite(nomP)),hm);
     System.out.println(monde);
+  }
+
+  public void construireConditionDeFinVivantDansPiece(StreamTokenizer st) throws IOException,NomDEntiteDejaUtiliseDansLeMondeException{
+    st.nextToken();
+    EtatDuJeu s=EtatDuJeu.valueOf(st.sval);
+    st.nextToken();
+    String nomV=st.sval;
+    st.nextToken();
+    String nomP=st.sval;
+    new ConditionDeFinVivantDansPiece(s,(Vivant)(this.monde.getEntite(nomV)),(Piece)(this.monde.getEntite(nomP)));
   }
 }

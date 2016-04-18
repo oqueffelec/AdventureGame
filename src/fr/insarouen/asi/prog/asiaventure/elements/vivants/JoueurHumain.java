@@ -21,7 +21,12 @@ public class JoueurHumain extends Vivant{
     this.ordre=null;
   }
 
-  public void executer() throws CommandeImpossiblePourLeVivantException{}
+  public void executer() throws CommandeImpossiblePourLeVivantException{
+    String[] tab = ordre.split;
+    Class[] tabf = new Class[tab.length()-1];
+    for()
+    tabf
+  }
 
   public void setOrdre(String ordre){
     this.ordre=ordre;
