@@ -25,11 +25,15 @@ public class JoueurHumain extends Vivant{
   public void executer() throws CommandeImpossiblePourLeVivantException,IllegalAccessException,Throwable{
     String[] tab = ordre.split(" ");
     Class[] tabf = new Class[tab.length-1];
-    for(int i =1;i<=tabf.length;i++){
-      tabf[i]=tab[i].getClass();
+    for(int i =0;i<tabf.length;i++){
+      tabf[i]=tab[i+1].getClass();
     }
-    Method m=this.getClass().getMethod(tab[1],tabf);
-    m.invoke(this,tabf);
+    Object[] tabe = new Object[tab.length-1];
+      for(int i=0;i<tabe.length;i++)
+        tabe[i]=tab[i+1];
+
+    Method m=this.getClass().getDeclaredMethod("commande"+tab[0],tabf);
+    m.invoke(this,"Excalibur");
   }
 
   public void setOrdre(String ordre){

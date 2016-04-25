@@ -18,7 +18,7 @@ public class TestJoueurHumain{
     JoueurHumain pj;
     Monde monde;
     Piece piece,piece2;
-    Objet o1,o2;
+    Objet o1,o2,o3;
     Porte p1;
     Map<String,Objet> listeOb;
 
@@ -37,20 +37,33 @@ public class TestJoueurHumain{
                return true;
              }
          };
+       o3=new Objet("Excalibur",monde){
+               public boolean estDeplacable(){
+                 return true;
+               }
+           };
 
       p1=new Porte("p1",monde,piece,piece2);
       listeOb=new HashMap<>();
       listeOb.put(o1.getNom(),o1);
       listeOb.put(o2.getNom(),o2);
-      pj=new JoueurHumain("Drizzt",monde,0,0,piece,listeOb){};
+      pj=new JoueurHumain("Drizzt",monde,0,0,piece,listeOb);
        piece.deposer(o1);
        piece.deposer(o2);
+       piece.deposer(o3);
        piece.addPorte(p1);
       }
 
     @Test(expected=NomDEntiteDejaUtiliseDansLeMondeException.class)
     public void testConstructeur() throws NomDEntiteDejaUtiliseDansLeMondeException{
       assertThat(pj,IsSame.sameInstance(new JoueurHumain("Drizzt",monde,0,0,piece,listeOb)));
+    }
+
+    @Test
+    public void testExecuter() throws CommandeImpossiblePourLeVivantException,IllegalAccessException,Throwable{
+      pj.setOrdre("Prendre Excalibur");
+      pj.executer();
+      assertTrue(pj.possede(o3));
     }
 
 }

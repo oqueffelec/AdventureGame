@@ -14,7 +14,7 @@ else
 			test2=$2
 			test2=$(echo $test2 | sed -e"s/\//\./g")
 			echo 'compiling ...'
-			javac -cp ./classes:lib/* -sourcepath ./src:./srctest -d ./classestest $srctestpath/$test
+			javac -cp ./classes:lib/* -sourcepath ./srctest -d ./classestest $srctestpath/$test
 			if [ $? -eq 0 ]; then
 				echo '...success !'
 				echo 'running ...'
