@@ -15,7 +15,7 @@ public class Monde extends java.lang.Object implements java.io.Serializable{
 
 	private String nomDuMonde;
 	private Entite[] entites=new Entite[0];
-	private Collection<Executable> executable;
+	/*private Collection<Executable> executable;*/
 
 	/** Constructeur de Monde
 	* @param nomDuMonde			nom du Monde
@@ -61,8 +61,8 @@ public class Monde extends java.lang.Object implements java.io.Serializable{
 			if(e instanceof JoueurHumain){
 				jh.add((JoueurHumain)e);
 			}
-			return jh;
 		}
+			return jh;
 	}
 
 	/** Getter de Monde
@@ -71,10 +71,10 @@ public class Monde extends java.lang.Object implements java.io.Serializable{
 	public String getNom(){
 		return this.nomDuMonde;
 	}
-
+/*
 	public Collection<Executable> getExecutables(){
 		return this.executable;
-	}
+	}*/
 
 	public String toString(){
 		StringBuilder desc=new StringBuilder();

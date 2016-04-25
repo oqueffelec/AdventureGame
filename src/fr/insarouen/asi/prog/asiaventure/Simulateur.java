@@ -126,7 +126,7 @@ public class Simulateur extends java.lang.Object {
   public void ajouterConditionsDeFin(Collection<ConditionDeFin> conditions){
     this.cdf.addAll(conditions);
   }
-
+/*
   public EtatDuJeu executerUnTour() throws java.lang.Throwable{
     List<JoueurHumain> jh= new ArrayList();
     jh=this.monde.getJoueurHumains();
@@ -143,5 +143,5 @@ public class Simulateur extends java.lang.Object {
 
     }
 
-  }
+  }*/
 }
