@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Iterator;
 import java.util.Set;
+import java.lang.reflect.*;
 
 public class JoueurHumain extends Vivant{
 
@@ -21,11 +22,14 @@ public class JoueurHumain extends Vivant{
     this.ordre=null;
   }
 
-  public void executer() throws CommandeImpossiblePourLeVivantException{
-    String[] tab = ordre.split;
-    Class[] tabf = new Class[tab.length()-1];
-    for()
-    tabf
+  public void executer() throws CommandeImpossiblePourLeVivantException,IllegalAccessException,Throwable{
+    String[] tab = ordre.split(" ");
+    Class[] tabf = new Class[tab.length-1];
+    for(int i =1;i<=tabf.length;i++){
+      tabf[i]=tab[i].getClass();
+    }
+    Method m=this.getClass().getMethod(tab[1],tabf);
+    m.invoke(this,tabf);
   }
 
   public void setOrdre(String ordre){
