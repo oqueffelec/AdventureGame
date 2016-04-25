@@ -1,11 +1,13 @@
 package fr.insarouen.asi.prog.asiaventure;
 
+import fr.insarouen.asi.prog.asiaventure.Monde;
 import fr.insarouen.asi.prog.asiaventure.*;
 import fr.insarouen.asi.prog.asiaventure.elements.*;
 import fr.insarouen.asi.prog.asiaventure.elements.vivants.*;
 import fr.insarouen.asi.prog.asiaventure.elements.objets.*;
 import fr.insarouen.asi.prog.asiaventure.elements.objets.serrurerie.*;
 import fr.insarouen.asi.prog.asiaventure.elements.structure.*;
+import fr.insarouen.asi.prog.asiaventure.elements.vivants.JoueurHumain;
 import fr.insarouen.asi.prog.asiaventure.lib.ListeObjet;
 import fr.insarouen.asi.prog.asiaventure.*;
 import java.util.HashMap;
@@ -15,11 +17,16 @@ import java.util.Set;
 import java.util.Scanner;
 import java.io.*;
 import java.lang.*;
+import java.util.List.*;
+import java.util.*;
+
 
 
 public class Simulateur extends java.lang.Object {
 
   protected Monde monde;
+  private EtatDuJeu etatDuJeu;
+  private Collection<ConditionDeFin> cdf;
 
   public Simulateur(ObjectInputStream ois) throws IOException,ClassNotFoundException{
     ois.readObject();
@@ -110,5 +117,31 @@ public class Simulateur extends java.lang.Object {
     st.nextToken();
     String nomP=st.sval;
     new ConditionDeFinVivantDansPiece(s,(Vivant)(this.monde.getEntite(nomV)),(Piece)(this.monde.getEntite(nomP)));
+  }
+
+  public void ajouterConditionDeFin(ConditionDeFin condition){
+    this.cdf.add(condition);
+  }
+
+  public void ajouterConditionsDeFin(Collection<ConditionDeFin> conditions){
+    this.cdf.addAll(conditions);
+  }
+
+  public EtatDuJeu executerUnTour() throws java.lang.Throwable{
+    List<JoueurHumain> jh= new ArrayList();
+    jh=this.monde.getJoueurHumains();
+    for(JoueurHumain jhu : jh){
+      toString();
+      System.out.println("Saisissez un ordre");
+      Scanner sc=new Scanner(System.in);
+      jhu.setOrdre(sc.next());
+    }
+    List<Executable> execs= new ArrayList();
+    execs=this.monde.getExecutables();
+    for(Executable e: execs){
+      e.executer();
+
+    }
+
   }
 }

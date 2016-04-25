@@ -28,8 +28,8 @@ public class JoueurHumain extends Vivant{
     for(int i =1;i<=tabf.length;i++){
       tabf[i]=tab[i].getClass();
     }
-    Method m=this.getClass().getMethod(tab[1],tabf);
-    m.invoke(this,tabf);
+    Method m=this.getClass().getMethod("commande" +tab[1],tabf);
+    m.invoke(this,(Object)tabf);
   }
 
   public void setOrdre(String ordre){

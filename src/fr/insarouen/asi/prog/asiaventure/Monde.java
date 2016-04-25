@@ -1,6 +1,9 @@
 package fr.insarouen.asi.prog.asiaventure;
 
 import fr.insarouen.asi.prog.asiaventure.elements.Entite;
+import fr.insarouen.asi.prog.asiaventure.elements.vivants.*;
+import java.util.*;
+
 
 /** Classe Monde : chaque monde possede un nom et une/plusieurs entites
  *
@@ -12,6 +15,7 @@ public class Monde extends java.lang.Object implements java.io.Serializable{
 
 	private String nomDuMonde;
 	private Entite[] entites=new Entite[0];
+	private Collection<Executable> executable;
 
 	/** Constructeur de Monde
 	* @param nomDuMonde			nom du Monde
@@ -51,11 +55,25 @@ public class Monde extends java.lang.Object implements java.io.Serializable{
 		return null;
 	}
 
+	public List<JoueurHumain> getJoueurHumains(){
+		List<JoueurHumain> jh=new ArrayList();
+		for(Entite e : entites){
+			if(e instanceof JoueurHumain){
+				jh.add((JoueurHumain)e);
+			}
+			return jh;
+		}
+	}
+
 	/** Getter de Monde
 	 * @return			Nom du Monde
 	 */
 	public String getNom(){
 		return this.nomDuMonde;
+	}
+
+	public Collection<Executable> getExecutables(){
+		return this.executable;
 	}
 
 	public String toString(){
