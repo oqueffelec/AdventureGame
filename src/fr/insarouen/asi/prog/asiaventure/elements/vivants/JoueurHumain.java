@@ -28,12 +28,17 @@ public class JoueurHumain extends Vivant{
     for(int i =0;i<tabf.length;i++){
       tabf[i]=tab[i+1].getClass();
     }
+<<<<<<< HEAD
     Object[] tabe = new Object[tab.length-1];
       for(int i=0;i<tabe.length;i++)
         tabe[i]=tab[i+1];
 
     Method m=this.getClass().getDeclaredMethod("commande"+tab[0],tabf);
     m.invoke(this,"Excalibur");
+=======
+    Method m=this.getClass().getMethod("commande" +tab[1],tabf);
+    m.invoke(this,(Object)tabf);
+>>>>>>> 743714191f535b064b9f91d58d43b1df29e1af39
   }
 
   public void setOrdre(String ordre){
