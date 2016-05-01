@@ -119,6 +119,9 @@ public class Simulateur extends java.lang.Object {
     new ConditionDeFinVivantDansPiece(s,(Vivant)(this.monde.getEntite(nomV)),(Piece)(this.monde.getEntite(nomP)));
   }
 
+  public EtatDuJeu getEtatDuJeu(){
+    return this.etatDuJeu;
+  }
   public void ajouterConditionDeFin(ConditionDeFin condition){
     this.cdf.add(condition);
   }
@@ -126,22 +129,36 @@ public class Simulateur extends java.lang.Object {
   public void ajouterConditionsDeFin(Collection<ConditionDeFin> conditions){
     this.cdf.addAll(conditions);
   }
-/*
+
   public EtatDuJeu executerUnTour() throws java.lang.Throwable{
-    List<JoueurHumain> jh= new ArrayList();
-    jh=this.monde.getJoueurHumains();
-    for(JoueurHumain jhu : jh){
-      toString();
-      System.out.println("Saisissez un ordre");
-      Scanner sc=new Scanner(System.in);
-      jhu.setOrdre(sc.next());
+    if(getEtatDuJeu().equals(EtatDuJeu.ENCOURS)){
+      List<JoueurHumain> jh= new ArrayList();
+      jh=this.monde.getJoueurHumains();
+      for(JoueurHumain jhu : jh){
+        toString();
+        System.out.println("Saisissez un ordre");
+        Scanner sc=new Scanner(System.in);
+        jhu.setOrdre(sc.next());
+      }
+      Collection<Executable> execs= new ArrayList();
+      execs=this.monde.getExecutables();
+      for(Executable e: execs){
+        e.executer();
+      }
+      for(ConditionDeFin ite: cdf){
+        if(ite.verifierCondition()!=EtatDuJeu.ENCOURS){
+          etatDuJeu=ite.getEtatConditionVerifiee();
+          return getEtatDuJeu();
+        }
+      }
     }
-    List<Executable> execs= new ArrayList();
-    execs=this.monde.getExecutables();
-    for(Executable e: execs){
-      e.executer();
+      return getEtatDuJeu();
+  }
+
+  public EtatDuJeu executerJusquaLaFin() throws Throwable{
+    while(executerUnTour().equals(EtatDuJeu.ENCOURS)){
 
     }
-
-  }*/
+    return etatDuJeu;
+  }
 }

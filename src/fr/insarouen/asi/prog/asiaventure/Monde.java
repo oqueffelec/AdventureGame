@@ -2,7 +2,10 @@ package fr.insarouen.asi.prog.asiaventure;
 
 import fr.insarouen.asi.prog.asiaventure.elements.Entite;
 import fr.insarouen.asi.prog.asiaventure.elements.vivants.*;
+import fr.insarouen.asi.prog.asiaventure.elements.*;
 import java.util.*;
+import java.util.HashMap;
+
 
 
 /** Classe Monde : chaque monde possede un nom et une/plusieurs entites
@@ -14,8 +17,8 @@ import java.util.*;
 public class Monde extends java.lang.Object implements java.io.Serializable{
 
 	private String nomDuMonde;
-	private Entite[] entites=new Entite[0];
-	/*private Collection<Executable> executable;*/
+	private HashMap<String,Entite> entites;
+
 
 	/** Constructeur de Monde
 	* @param nomDuMonde			nom du Monde
@@ -34,12 +37,7 @@ public class Monde extends java.lang.Object implements java.io.Serializable{
 		if(!(this.getEntite(entite.getNom())==null))
 			throw new NomDEntiteDejaUtiliseDansLeMondeException(entite.getNom() + " Existe déja dans ce monde");
 
-		Entite[] tmp=new Entite[this.entites.length+1];
-		for(int i=0;i<this.entites.length;i++){
-			tmp[i]=this.entites[i];
-		}
-		tmp[tmp.length-1]=entite;
-		this.entites=tmp;
+		entites.put(entite.toString(),entite);
 	}
 
 	/** Permet d'obtenir une entite du monde a partir du nom de celle ci
@@ -48,16 +46,16 @@ public class Monde extends java.lang.Object implements java.io.Serializable{
 	 * @return			retourne l'entite
 	 */
 	public Entite getEntite(String nomEntite){
-		for(int i=0;i<this.entites.length;i++){
-			if(this.entites[i].getNom().equals(nomEntite))
-				return this.entites[i];
+		for(Entite ite : entites.values()){
+			if(entites.containsKey(nomEntite))
+				return entites.get(nomEntite);
 		}
 		return null;
 	}
 
 	public List<JoueurHumain> getJoueurHumains(){
 		List<JoueurHumain> jh=new ArrayList();
-		for(Entite e : entites){
+		for(Entite e : entites.values()){
 			if(e instanceof JoueurHumain){
 				jh.add((JoueurHumain)e);
 			}
@@ -71,20 +69,23 @@ public class Monde extends java.lang.Object implements java.io.Serializable{
 	public String getNom(){
 		return this.nomDuMonde;
 	}
-/*
+
 	public Collection<Executable> getExecutables(){
-		return this.executable;
-	}*/
+		Collection c=new ArrayList<Executable>();
+		for(Entite ite : entites.values()){
+			if(entites.get(ite) instanceof Executable){
+				c.add(ite);
+			}
+		}
+		return c;
+	}
 
 	public String toString(){
 		StringBuilder desc=new StringBuilder();
 		desc.append("Monde ");
 		desc.append(this.getNom());
-		for(int i=0;i<this.entites.length;i++){
-			desc.append(" Entité ");
-			desc.append(i+1);
-			desc.append(" : ");
-			desc.append(this.entites[i].getNom());
+		for(String ite:entites.keySet()){
+			desc.append(this.entites.get(ite));
 			desc.append("  ");
 		}
 		return desc.toString();

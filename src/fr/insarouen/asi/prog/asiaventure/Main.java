@@ -22,7 +22,14 @@ public class Main{
 			Simulateur s;
 
 			switch(choix){
-				case 1 :
+				case 1 : s.executerUnTour();
+				System.out.print("Voulez-vous rejouez à nouveau ? (o pour oui, n pour non)");
+				Scanner scc=new Scanner(System.in);
+				while(scc.equals("o")){
+					s.executerUnTour();
+				}
+
+
 				break;
 				case 2 :	s=new Simulateur(f2);
 				break;
