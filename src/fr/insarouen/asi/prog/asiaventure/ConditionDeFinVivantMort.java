@@ -2,7 +2,7 @@ package fr.insarouen.asi.prog.asiaventure;
 import fr.insarouen.asi.prog.asiaventure.*;
 import java.lang.*;
 import java.io.*;
-import fr.insarouen.asi.prog.asiaventure.vivants.*;
+import fr.insarouen.asi.prog.asiaventure.elements.vivants.*;
 
 public class ConditionDeFinVivantMort extends ConditionDeFin {
   private Vivant vivant;

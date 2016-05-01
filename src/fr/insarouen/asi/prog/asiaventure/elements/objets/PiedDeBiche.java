@@ -9,7 +9,7 @@ import fr.insarouen.asi.prog.asiaventure.*;
  * @author Le Lain Alexandre
  * @version 1.0 , Janvier 2016.
  */
-public abstract class PiedDeBiche extends Objet{
+public class PiedDeBiche extends Objet{
 
 	public PiedDeBiche(String nom,Monde monde) throws NomDEntiteDejaUtiliseDansLeMondeException {
 		super(nom,monde);

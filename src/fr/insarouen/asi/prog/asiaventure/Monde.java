@@ -17,7 +17,7 @@ import java.util.HashMap;
 public class Monde extends java.lang.Object implements java.io.Serializable{
 
 	private String nomDuMonde;
-	private HashMap<String,Entite> entites;
+	private Map<String,Entite> entites;
 
 
 	/** Constructeur de Monde
@@ -25,6 +25,7 @@ public class Monde extends java.lang.Object implements java.io.Serializable{
 	*/
 	public Monde(String nomDuMonde){
 		this.nomDuMonde=nomDuMonde;
+		this.entites=new HashMap();
 	}
 
 	/** Permet d'ajouter une entite au monde
@@ -37,7 +38,7 @@ public class Monde extends java.lang.Object implements java.io.Serializable{
 		if(!(this.getEntite(entite.getNom())==null))
 			throw new NomDEntiteDejaUtiliseDansLeMondeException(entite.getNom() + " Existe déja dans ce monde");
 
-		entites.put(entite.toString(),entite);
+		entites.put(entite.getNom(),entite);
 	}
 
 	/** Permet d'obtenir une entite du monde a partir du nom de celle ci

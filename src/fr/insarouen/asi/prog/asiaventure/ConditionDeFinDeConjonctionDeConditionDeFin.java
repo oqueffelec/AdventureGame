@@ -7,7 +7,7 @@ import fr.insarouen.asi.prog.asiaventure.vivants.*;
 public class ConditionDeFinDeConjonctionDeConditionDeFin extends ConditionDeFin {
   private  ConditionDeFin[] cfs;
 
-  public ConditionDeFinConjonctionConditionDeFin(EtatDuJeu etatDuJeu, ConditionDeFin... cfs) {
+  public ConditionDeFinDeConjonctionDeConditionDeFin(EtatDuJeu etatDuJeu, ConditionDeFin... cfs) {
     super(etatDuJeu);
     this.cfs=cfs;
   }
@@ -18,4 +18,5 @@ public class ConditionDeFinDeConjonctionDeConditionDeFin extends ConditionDeFin 
         return EtatDuJeu.ENCOURS;
     }
     return getEtatConditionVerifiee();
+  }
 }

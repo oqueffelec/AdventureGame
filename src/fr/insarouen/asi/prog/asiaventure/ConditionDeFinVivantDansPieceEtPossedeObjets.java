@@ -24,4 +24,5 @@ public class ConditionDeFinVivantDansPieceEtPossedeObjets extends ConditionDeFin
     if (c1.verifierCondition().equals(EtatDuJeu.ENCOURS) || c2.verifierCondition().equals(EtatDuJeu.ENCOURS))
       return EtatDuJeu.ENCOURS;
     return getEtatConditionVerifiee();
+  }
 }

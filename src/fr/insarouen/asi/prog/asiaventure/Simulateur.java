@@ -25,8 +25,14 @@ import java.util.*;
 public class Simulateur extends java.lang.Object {
 
   protected Monde monde;
+  protected ConditionDeFin conditionsDeFin;
   private EtatDuJeu etatDuJeu;
   private Collection<ConditionDeFin> cdf;
+
+  public Simulateur(Monde monde,ConditionDeFin conditionsDeFin){
+    this.monde=monde;
+    this.conditionsDeFin=conditionsDeFin;
+  }
 
   public Simulateur(ObjectInputStream ois) throws IOException,ClassNotFoundException{
     ois.readObject();
