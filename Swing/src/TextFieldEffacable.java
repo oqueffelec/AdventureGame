@@ -16,4 +16,6 @@ public class TextFieldEffacable extends JTextField implements MouseListener{
   public void mouseEntered(MouseEvent e){}
   public void mouseExited(MouseEvent e){}
 
+
+
 }
