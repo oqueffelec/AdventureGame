@@ -40,6 +40,24 @@ public class Main{
       exo2.setVisible(true);*/
 
       //----------------------Exercice 3 ----------------------
-      
+      /*
+      MouseListener MyListener = new MouseAdapter(){
+        public void mouseClicked(MouseEvent e){
+          ((JTextField)e.getSource()).setText("");
+        }
+      };
+
+      JFrame exo3 = new JFrame("Exercice 3");
+      Container cp = exo3.getContentPane();
+      cp.setLayout(new FlowLayout());
+      JTextField[] list=new JTextField[Integer.parseInt(args[0])];
+      for(int i=1;i<Integer.parseInt(args[0])+1;i++){
+        list[i-1]=new JTextField("Champ "+i,15);
+        cp.add(list[i-1]);
+        list[i-1].addMouseListener(MyListener);
+      }
+      exo3.pack();
+      exo3.setVisible(true);*/
   }
+
 }
