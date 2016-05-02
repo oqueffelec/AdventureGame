@@ -62,6 +62,7 @@ public class Main{
 
 
             //Exercice 4
+            /*
             JFrame exo4 = new JFrame("exo 4");
             TextFieldEffacableAdapter tf3=new TextFieldEffacableAdapter("Entrez du texte ici",50);
              class MyListener extends MouseAdapter{
@@ -76,7 +77,31 @@ public class Main{
             cp.add(tf3);
             cp.add(boutton);
             exo4.pack();
-            exo4.setVisible(true);
+            exo4.setVisible(true);*/
+
+        //Exercice 5
+        JFrame exo5 = new JFrame("Exercice 5");
+        Container cp = exo5.getContentPane();
+        JPanel milieu = new JPanel();
+        milieu.setLayout(new BoxLayout(milieu,BoxLayout.Y_AXIS));
+        milieu.add(Box.createGlue());
+
+        GestionListe l1= new GestionListe();
+        GestionListe l2= new GestionListe();
+        MyButton b1 = new MyButton(">");
+        b1.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+        milieu.add(Box.createGlue());
+        MyButton b2 = new MyButton("<");
+        b2.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+        milieu.add(Box.createGlue());
+        milieu.add(b1);
+        milieu.add(b2);
+        cp.setLayout(new BorderLayout());
+        cp.add(l1,BorderLayout.EAST);
+        cp.add(l2,BorderLayout.WEST);
+        cp.add(milieu,BorderLayout.CENTER);
+        exo5.pack();
+        exo5.setVisible(true);
 
   }
 
