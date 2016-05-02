@@ -12,7 +12,7 @@ else
 			if [ $? -eq 0 ]; then
 				echo '...success !'
 				echo 'running ...'
-				java -classpath classes Main
+				java -classpath classes Main $1
 			else
 				echo "OMFG! ERROR!"
 			fi

@@ -38,21 +38,46 @@ public class Main{
       exo2.pack();
       exo2.setVisible(true);*/
 
-      //Exercice 4
-      JFrame exo4 = new JFrame("exo 4");
-      TextFieldEffacableAdapter tf3=new TextFieldEffacableAdapter("Entrez du texte ici",50);
-       class MyListener extends MouseAdapter{
+
+
+      //----------------------Exercice 3 ----------------------
+      /*
+      MouseListener MyListener = new MouseAdapter(){
         public void mouseClicked(MouseEvent e){
-            tf3.setText("");
+          ((JTextField)e.getSource()).setText("");
         }
-      }
-      MonBoutton boutton=new MonBoutton("Effacer");
-      boutton.addMouseListener(new MyListener());
-      Container cp=exo4.getContentPane();
+      };
+
+      JFrame exo3 = new JFrame("Exercice 3");
+      Container cp = exo3.getContentPane();
       cp.setLayout(new FlowLayout());
-      cp.add(tf3);
-      cp.add(boutton);
-      exo4.pack();
-      exo4.setVisible(true);
+      JTextField[] list=new JTextField[Integer.parseInt(args[0])];
+      for(int i=1;i<Integer.parseInt(args[0])+1;i++){
+        list[i-1]=new JTextField("Champ "+i,15);
+        cp.add(list[i-1]);
+        list[i-1].addMouseListener(MyListener);
+      }
+      exo3.pack();
+      exo3.setVisible(true);*/
+
+
+            //Exercice 4
+            JFrame exo4 = new JFrame("exo 4");
+            TextFieldEffacableAdapter tf3=new TextFieldEffacableAdapter("Entrez du texte ici",50);
+             class MyListener extends MouseAdapter{
+              public void mouseClicked(MouseEvent e){
+                  tf3.setText("");
+              }
+            }
+            MonBoutton boutton=new MonBoutton("Effacer");
+            boutton.addMouseListener(new MyListener());
+            Container cp=exo4.getContentPane();
+            cp.setLayout(new FlowLayout());
+            cp.add(tf3);
+            cp.add(boutton);
+            exo4.pack();
+            exo4.setVisible(true);
+
   }
+
 }
