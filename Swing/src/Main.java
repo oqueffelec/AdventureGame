@@ -82,27 +82,38 @@ public class Main{
         //Exercice 5
         JFrame exo5 = new JFrame("Exercice 5");
         Container cp = exo5.getContentPane();
+        cp.setLayout(new BorderLayout());
         JPanel milieu = new JPanel();
         milieu.setLayout(new BoxLayout(milieu,BoxLayout.Y_AXIS));
-        milieu.add(Box.createGlue());
 
         GestionListe l1= new GestionListe();
         GestionListe l2= new GestionListe();
+
         MyButton b1 = new MyButton(">");
         b1.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-        milieu.add(Box.createGlue());
+        b1.addActionListener(new MyListener(l2,l1));
         MyButton b2 = new MyButton("<");
         b2.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-        milieu.add(Box.createGlue());
+        b2.addActionListener(new MyListener(l1,l2));
+
         milieu.add(b1);
         milieu.add(b2);
-        cp.setLayout(new BorderLayout());
+        cp.add(milieu,BorderLayout.CENTER);
         cp.add(l1,BorderLayout.EAST);
         cp.add(l2,BorderLayout.WEST);
-        cp.add(milieu,BorderLayout.CENTER);
         exo5.pack();
         exo5.setVisible(true);
 
   }
+}
 
+  class MyListener implements ActionListener{
+    GestionListe l1,l2;
+    public MyListener(GestionListe l1, GestionListe l2){
+        this.l1=l1;
+        this.l2=l2;
+    }
+    public void actionPerformed(ActionEvent e){
+      l2.addElement(l1.removeSelection());
+    }
 }

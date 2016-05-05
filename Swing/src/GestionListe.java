@@ -7,14 +7,14 @@ import java.awt.event.*;
 public class GestionListe extends JPanel {
   private JList<String> list;
   private DefaultListModel<String> listModel;
-  
+
   private JTextField nomPersonne;
   private JButton enlever;
-  
+
   public GestionListe() {
     setBorder(BorderFactory.createTitledBorder("Personnel"));
     setLayout(new BorderLayout(5,5));
-    
+
     // création de la liste et de ses barres de défilement
     listModel = new DefaultListModel<String>();
     listModel.addElement("Nicolas");
@@ -27,26 +27,37 @@ public class GestionListe extends JPanel {
     list.addListSelectionListener(new GestionSelection());
     JScrollPane listScrollPane = new JScrollPane(list);
     add(listScrollPane, BorderLayout.CENTER);
-    
+
     // panneau contenant le textfield et les 2 boutons
     // (FlowLayout par defaut)
     JPanel panneauBouton = new JPanel();
     add(panneauBouton, BorderLayout.SOUTH);
-    
+
     // création des boutons et du champs de saisie
     nomPersonne = new JTextField(10);
     panneauBouton.add(nomPersonne);
     nomPersonne.setText(list.getSelectedValue().toString());
-    
+
     JButton ajout = new JButton("Ajouter");
     panneauBouton.add(ajout);
     ajout.addActionListener(new AjoutListener());
-    
+
     enlever = new JButton("Enlever");
     panneauBouton.add(enlever);
     enlever.addActionListener(new EnleveListener());
   }
-  
+
+  public String removeSelection(){
+    String tmp = list.getSelectedValue();
+    enlever();
+    return tmp;
+  }
+
+  public void addElement(String elt){
+    if(!(list.getSelectedValue().equals("")) && !(list.getSelectedValue()==null))
+      listModel.addElement(elt);
+  }
+
   // gestion de la selection de la liste
   private class GestionSelection implements ListSelectionListener {
     public void valueChanged(ListSelectionEvent e) {
@@ -64,32 +75,37 @@ public class GestionListe extends JPanel {
       }
     }
   }
-  
+
+  public void enlever(){
+        int index = list.getSelectedIndex();
+        if (index != -1) {
+    listModel.remove(index);
+
+
+    int size = listModel.getSize();
+    // si la liste est vide on desactive le bouton "enlever"
+    if (size == 0) {
+      enlever.setEnabled(false);
+      nomPersonne.setText("");
+    }
+    else {
+      // reajustement de la selection
+      if (index == size)
+        index--;
+      list.setSelectedIndex(index);
+     }
+    }
+  }
+
   // gestion du bouton "enlever"
   private class EnleveListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
       // retrait de l'element selectionne
-      int index = list.getSelectedIndex();
-      if (index != -1) {
-	listModel.remove(index);
-	  
-	  
-	int size = listModel.getSize();
-	// si la liste est vide on desactive le bouton "enlever"
-	if (size == 0) {
-	  enlever.setEnabled(false);
-	  nomPersonne.setText("");
-	}
-	else {
-	  // reajustement de la selection
-	  if (index == size)
-	    index--;
-	  list.setSelectedIndex(index);
-	}
-      }
+      enlever();
     }
   }
-  
+
+
   // gestion du bouton "ajout"
   private class AjoutListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
@@ -99,10 +115,10 @@ public class GestionListe extends JPanel {
 	Toolkit.getDefaultToolkit().beep();
 	return;
       }
-	
+
       int index = list.getSelectedIndex();
       int size  = listModel.getSize();
-	
+
       // si on ajoute en fin de liste ou dans une liste vide
       if ( index == -1 || (index+1 == size) ) {
 	listModel.addElement(contenuChampsPersonne);
@@ -115,5 +131,5 @@ public class GestionListe extends JPanel {
       }
     }
   }
-  
+
 }
