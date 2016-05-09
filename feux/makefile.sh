@@ -19,4 +19,3 @@ sources=Main.java
 				echo "OMFG! ERROR!"
 			fi
 		fi
-fi
